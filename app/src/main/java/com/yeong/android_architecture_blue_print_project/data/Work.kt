@@ -6,7 +6,9 @@ import androidx.room.PrimaryKey
 
 @Entity
 data class Work(
-    @PrimaryKey(autoGenerate = true) val workIndex: Int,
+    @PrimaryKey(autoGenerate = true) val workIndex: Int?,
     @ColumnInfo(name = "title") val title: String,
     @ColumnInfo(name = "content") val content: String,
-)
+) {
+    constructor(title: String, content: String) : this(null, title, content)
+}
