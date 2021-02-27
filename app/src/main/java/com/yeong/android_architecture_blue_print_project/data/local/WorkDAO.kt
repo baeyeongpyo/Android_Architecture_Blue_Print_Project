@@ -15,6 +15,6 @@ interface WorkDAO {
     fun addWork(vararg work : Work)
 
     @Delete
-    fun removeWork(work : Work)
+    fun removeWork(vararg work : Work)
 
 }
