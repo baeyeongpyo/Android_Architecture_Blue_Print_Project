@@ -10,12 +10,12 @@ import com.yeong.android_architecture_blue_print_project.data.Work
 interface WorkDAO {
 
     @Query("SELECT * FROM Work")
-    fun allWork(): List<Work>
+    suspend fun allWork(): List<Work>
 
     @Insert
-    fun addWork(vararg work: Work)
+    suspend fun addWork(vararg work: Work)
 
     @Delete
-    fun removeWork(vararg work: Work)
+    suspend fun removeWork(vararg work: Work)
 
 }
