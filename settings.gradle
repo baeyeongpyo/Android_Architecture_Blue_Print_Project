@@ -1,0 +1,2 @@
+include ':app'
+rootProject.name = "Android_Architecture_Blue_Print_Project"
