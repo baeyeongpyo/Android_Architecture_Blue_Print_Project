@@ -27,11 +27,11 @@ class LocalWorkDataSourceImpl(
         }
     }
 
-    override suspend fun insertWork(vararg work: Work) = withContext(dispatcher) {
+    override suspend fun addWork(vararg work: Work) = withContext(dispatcher) {
         dao.addWork(*work)
     }
 
-    override suspend fun deleteWork(vararg work: Work) = withContext(dispatcher){
+    override suspend fun removeWork(vararg work: Work) = withContext(dispatcher){
         dao.removeWork(*work)
     }
 }
