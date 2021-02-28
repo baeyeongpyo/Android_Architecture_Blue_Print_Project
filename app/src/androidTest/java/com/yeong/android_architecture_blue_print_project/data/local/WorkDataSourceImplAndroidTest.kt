@@ -7,7 +7,6 @@ import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.yeong.android_architecture_blue_print_project.data.Work
 import junit.framework.TestCase
 import kotlinx.coroutines.runBlocking
-import kotlinx.coroutines.withContext
 import org.junit.After
 import org.junit.Before
 import org.junit.Test
@@ -35,26 +34,15 @@ class WorkDataSourceImplAndroidTest : TestCase() {
 
     @Test
     fun workDataBase_add_work_test() = runBlocking {
-        val beforeWorkList = workDao.allWork()
-
         val newWorkData = Work(null, "test title", "test content data")
-        workDao.addWork(newWorkData)
-
-        val afterWorkList = workDao.allWork()
-
-        assertEquals(beforeWorkList.size + 1, afterWorkList.size)
+        workDataAddTest(newWorkData)
+        return@runBlocking
     }
 
     @Test
     fun workDataBase_add_work_remove_test() = runBlocking {
-        val beforeWorkList = workDao.allWork()
-
         val newWorkData = Work("test title", "test content data")
-        workDao.addWork(newWorkData)
-
-        val removeBeforeList = workDao.allWork()
-
-        assertEquals(beforeWorkList.size + 1, removeBeforeList.size)
+        val removeBeforeList = workDataAddTest(newWorkData)
 
         workDao.removeWork(removeBeforeList[0])
         val removeAfterListData = workDao.allWork()
@@ -64,14 +52,8 @@ class WorkDataSourceImplAndroidTest : TestCase() {
 
     @Test
     fun workDataBase_add_work_update_test() = runBlocking {
-        val beforeWorkList = workDao.allWork()
-
         val newWorkData = Work("test title", "test content data")
-        workDao.addWork(newWorkData)
-
-        val updateBeforeWorkList = workDao.allWork()
-
-        assertEquals(beforeWorkList.size + 1, updateBeforeWorkList.size)
+        val updateBeforeWorkList = workDataAddTest(newWorkData)
 
         val updateTargetWorkData = updateBeforeWorkList[0]
         updateTargetWorkData.title = "test title change"
@@ -84,6 +66,18 @@ class WorkDataSourceImplAndroidTest : TestCase() {
 
         assertEquals(updateTargetWorkData.title, updateCheckTargetData.title)
         assertEquals(updateTargetWorkData.content, updateCheckTargetData.content)
+    }
+
+    private fun workDataAddTest(workData: Work) = runBlocking {
+        val beforeWorkList = workDao.allWork()
+
+        workDao.addWork(workData)
+
+        val afterWorkList = workDao.allWork()
+
+        assertEquals(beforeWorkList.size + 1, afterWorkList.size)
+
+        return@runBlocking afterWorkList
     }
 
 }
