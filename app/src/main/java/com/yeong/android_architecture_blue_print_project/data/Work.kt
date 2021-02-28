@@ -9,6 +9,7 @@ data class Work(
     @PrimaryKey(autoGenerate = true) val workIndex: Int?,
     @ColumnInfo(name = "title") var title: String,
     @ColumnInfo(name = "content") var content: String,
+    @ColumnInfo(name = "isComplete") var isComplete: Boolean = false, // added in version 2
 ) {
-    constructor(title: String, content: String) : this(null, title, content)
+    constructor(title: String, content: String) : this(null, title, content, false)
 }
