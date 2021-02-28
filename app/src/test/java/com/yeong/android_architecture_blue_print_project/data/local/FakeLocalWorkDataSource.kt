@@ -11,7 +11,7 @@ import org.junit.Test
 import org.junit.Assert.*
 import java.lang.Exception
 
-class LocalWorkDataSourceImplTest : WorkDataSource {
+class FakeLocalWorkDataSource : WorkDataSource {
 
     private val taskList = mutableListOf<Work>()
     private val fakeDispatcher = Dispatchers.Default
