@@ -14,7 +14,7 @@ import java.lang.Exception
 class FakeLocalWorkDataSource : WorkDataSource {
 
     private val taskList = mutableListOf<Work>()
-    private val fakeDispatcher = Dispatchers.Default
+    private val fakeDispatcher = Dispatchers.Unconfined
 
     override suspend fun getAllWork(): Result<List<Work>> = withContext(fakeDispatcher) {
         if (taskList.isNotEmpty()) {
@@ -59,6 +59,15 @@ class FakeLocalWorkDataSource : WorkDataSource {
 
     override suspend fun removeWork(vararg work: Work) {
         taskList.removeAll(work)
+    }
+
+    override suspend fun removeAllWork() {
+        taskList.clear()
+    }
+
+    override suspend fun removeCompleteWork() {
+        val removeTargetList = taskList.filter { it.isComplete }
+        taskList.removeAll(removeTargetList.toTypedArray())
     }
 
     override suspend fun updateWork(vararg work: Work) {
