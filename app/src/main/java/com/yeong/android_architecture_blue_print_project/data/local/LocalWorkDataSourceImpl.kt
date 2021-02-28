@@ -60,4 +60,8 @@ class LocalWorkDataSourceImpl(
     override suspend fun removeWork(vararg work: Work) = withContext(dispatcher) {
         dao.removeWork(*work)
     }
+
+    override suspend fun updateWork(vararg work: Work) = withContext(dispatcher) {
+        dao.updateWork(*work)
+    }
 }

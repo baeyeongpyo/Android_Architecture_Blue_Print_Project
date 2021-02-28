@@ -28,4 +28,8 @@ class WorkRepositoryImpl(
     override suspend fun removeWork(vararg work: Work) = withContext(dispatcher) {
         dataSource.removeWork(*work)
     }
+
+    override suspend fun updateWork(vararg work: Work) = withContext(dispatcher) {
+        dataSource.updateWork(*work)
+    }
 }
