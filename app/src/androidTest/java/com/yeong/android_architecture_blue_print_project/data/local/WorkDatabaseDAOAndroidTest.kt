@@ -68,6 +68,30 @@ class WorkDatabaseDAOAndroidTest : TestCase() {
         assertEquals(updateTargetWorkData.content, updateCheckTargetData.content)
     }
 
+    @Test
+    fun workDataBase_add_work_complete_query() = runBlocking {
+        val newWorkData = Work("test title", "test content data")
+        val updateBeforeWorkList = workDataAddTest(newWorkData)
+
+        val beforeYetCompleteWorkList = workDao.isCompleteWorkList(false)
+        val beforeCompleteWorkList = workDao.isCompleteWorkList(true)
+        assertEquals(
+            updateBeforeWorkList.size,
+            beforeYetCompleteWorkList.size + beforeCompleteWorkList.size
+        )
+
+        val completeChangeWorkData = beforeYetCompleteWorkList[0]
+        completeChangeWorkData.isComplete = true
+        workDao.updateWork(completeChangeWorkData)
+
+        val afterYetCompleteWorkList = workDao.isCompleteWorkList(false)
+        val afterCompleteWorkList = workDao.isCompleteWorkList(true)
+        assertEquals(beforeYetCompleteWorkList.size, afterYetCompleteWorkList.size + 1)
+        assertEquals(beforeCompleteWorkList.size, afterCompleteWorkList.size - 1)
+
+
+    }
+
     private fun workDataAddTest(workData: Work) = runBlocking {
         val beforeWorkList = workDao.allWork()
 
