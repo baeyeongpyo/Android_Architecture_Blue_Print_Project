@@ -28,6 +28,8 @@ class WorkDatabaseMigrationTest : TestCase() {
     @Test
     @Throws(IOException::class)
     fun migrationTo_1_x() {
+        testHelper.createDatabase(TEST_DB, 1).apply { close() }
+
         Room.databaseBuilder(
             InstrumentationRegistry.getInstrumentation().targetContext,
             WorkDatabase::class.java,
