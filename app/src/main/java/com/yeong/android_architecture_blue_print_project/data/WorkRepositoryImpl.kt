@@ -13,6 +13,14 @@ class WorkRepositoryImpl(
         dataSource.getAllWork()
     }
 
+    override suspend fun getYetCompleteWorkList(): Result<List<Work>> = withContext(dispatcher) {
+        dataSource.getYetCompleteWorkList()
+    }
+
+    override suspend fun getCompleteWorkList(): Result<List<Work>> = withContext(dispatcher) {
+        dataSource.getCompleteWorkList()
+    }
+
     override suspend fun addWork(vararg work: Work) = withContext(dispatcher) {
         dataSource.addWork(*work)
     }

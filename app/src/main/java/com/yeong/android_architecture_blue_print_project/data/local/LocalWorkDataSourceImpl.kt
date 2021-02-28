@@ -27,11 +27,37 @@ class LocalWorkDataSourceImpl(
         }
     }
 
+    override suspend fun getYetCompleteWorkList(): Result<List<Work>> = withContext(dispatcher) {
+        try {
+            val result = dao.isCompleteWorkList(false)
+            if (!result.isNullOrEmpty()) {
+                return@withContext Result.Success(result)
+            } else {
+                return@withContext Result.Fail(DATA_EMPTY, Exception(DATA_EMPTY_STRING))
+            }
+        } catch (e: Exception) {
+            return@withContext Result.Fail(e)
+        }
+    }
+
+    override suspend fun getCompleteWorkList(): Result<List<Work>> = withContext(dispatcher) {
+        try {
+            val result = dao.isCompleteWorkList(true)
+            if (!result.isNullOrEmpty()) {
+                return@withContext Result.Success(result)
+            } else {
+                return@withContext Result.Fail(DATA_EMPTY, Exception(DATA_EMPTY_STRING))
+            }
+        } catch (e: Exception) {
+            return@withContext Result.Fail(e)
+        }
+    }
+
     override suspend fun addWork(vararg work: Work) = withContext(dispatcher) {
         dao.addWork(*work)
     }
 
-    override suspend fun removeWork(vararg work: Work) = withContext(dispatcher){
+    override suspend fun removeWork(vararg work: Work) = withContext(dispatcher) {
         dao.removeWork(*work)
     }
 }
