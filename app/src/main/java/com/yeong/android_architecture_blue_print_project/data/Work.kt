@@ -10,6 +10,13 @@ data class Work(
     @ColumnInfo(name = "title") var title: String,
     @ColumnInfo(name = "content") var content: String,
     @ColumnInfo(name = "isComplete") var isComplete: Boolean = false, // added in version 2
+    @ColumnInfo(name = "workCreateDate") var workCreateDate: Long = System.currentTimeMillis() // added in version 3
 ) {
-    constructor(title: String, content: String) : this(null, title, content, false)
+    constructor(title: String, content: String) : this(
+        null,
+        title,
+        content,
+        false,
+        System.currentTimeMillis()
+    )
 }
