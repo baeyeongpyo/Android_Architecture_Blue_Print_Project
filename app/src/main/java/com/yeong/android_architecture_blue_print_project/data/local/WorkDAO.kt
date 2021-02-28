@@ -1,9 +1,6 @@
 package com.yeong.android_architecture_blue_print_project.data.local
 
-import androidx.room.Dao
-import androidx.room.Delete
-import androidx.room.Insert
-import androidx.room.Query
+import androidx.room.*
 import com.yeong.android_architecture_blue_print_project.data.Work
 
 @Dao
@@ -17,5 +14,8 @@ interface WorkDAO {
 
     @Delete
     suspend fun removeWork(vararg work: Work)
+
+    @Update
+    suspend fun updateWork(vararg work: Work)
 
 }
