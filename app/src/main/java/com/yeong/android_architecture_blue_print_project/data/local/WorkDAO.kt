@@ -6,10 +6,10 @@ import com.yeong.android_architecture_blue_print_project.data.Work
 @Dao
 interface WorkDAO {
 
-    @Query("SELECT * FROM Work")
+    @Query("SELECT * FROM Work ORDER BY workCreateDate DESC")
     suspend fun allWork(): List<Work>
 
-    @Query("SELECT * FROM Work WHERE isComplete = :complete")
+    @Query("SELECT * FROM Work WHERE isComplete = :complete ORDER BY workCreateDate DESC")
     suspend fun isCompleteWorkList(complete: Boolean): List<Work>
 
     @Insert
