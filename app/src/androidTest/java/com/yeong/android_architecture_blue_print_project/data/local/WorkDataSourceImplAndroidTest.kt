@@ -49,7 +49,7 @@ class WorkDataSourceImplAndroidTest : TestCase() {
     fun workDataBase_add_work_remove_test() = runBlocking {
         val beforeWorkList = workDao.allWork()
 
-        val newWorkData = Work(null, "test title", "test content data")
+        val newWorkData = Work("test title", "test content data")
         workDao.addWork(newWorkData)
 
         val removeBeforeList = workDao.allWork()
@@ -61,4 +61,29 @@ class WorkDataSourceImplAndroidTest : TestCase() {
 
         assertEquals(removeBeforeList.size - 1, removeAfterListData.size)
     }
+
+    @Test
+    fun workDataBase_add_work_update_test() = runBlocking {
+        val beforeWorkList = workDao.allWork()
+
+        val newWorkData = Work("test title", "test content data")
+        workDao.addWork(newWorkData)
+
+        val updateBeforeWorkList = workDao.allWork()
+
+        assertEquals(beforeWorkList.size + 1, updateBeforeWorkList.size)
+
+        val updateTargetWorkData = updateBeforeWorkList[0]
+        updateTargetWorkData.title = "test title change"
+        updateTargetWorkData.content = "test content change"
+
+        workDao.updateWork(updateTargetWorkData)
+
+        val updateAfterWorkList = workDao.allWork()
+        val updateCheckTargetData = updateAfterWorkList[0]
+
+        assertEquals(updateTargetWorkData.title, updateCheckTargetData.title)
+        assertEquals(updateTargetWorkData.content, updateCheckTargetData.content)
+    }
+
 }
