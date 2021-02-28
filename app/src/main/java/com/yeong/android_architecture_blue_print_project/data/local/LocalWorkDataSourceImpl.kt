@@ -61,6 +61,14 @@ class LocalWorkDataSourceImpl(
         dao.removeWork(*work)
     }
 
+    override suspend fun removeAllWork() {
+        dao.removeWork(*dao.allWork().toTypedArray())
+    }
+
+    override suspend fun removeCompleteWork() {
+        dao.removeWork(*dao.allWork().filter { it.isComplete }.toTypedArray())
+    }
+
     override suspend fun updateWork(vararg work: Work) = withContext(dispatcher) {
         dao.updateWork(*work)
     }
