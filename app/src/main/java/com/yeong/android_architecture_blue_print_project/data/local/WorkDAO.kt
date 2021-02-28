@@ -9,6 +9,9 @@ interface WorkDAO {
     @Query("SELECT * FROM Work")
     suspend fun allWork(): List<Work>
 
+    @Query("SELECT * FROM Work WHERE isComplete = :complete")
+    suspend fun isCompleteWorkList(complete: Boolean): List<Work>
+
     @Insert
     suspend fun addWork(vararg work: Work)
 
