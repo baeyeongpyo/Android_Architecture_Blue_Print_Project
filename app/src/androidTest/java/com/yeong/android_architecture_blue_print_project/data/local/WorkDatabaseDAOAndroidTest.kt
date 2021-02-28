@@ -14,7 +14,7 @@ import org.junit.runner.RunWith
 import java.io.IOException
 
 @RunWith(AndroidJUnit4::class)
-class WorkDataSourceImplAndroidTest : TestCase() {
+class WorkDatabaseDAOAndroidTest : TestCase() {
 
     private lateinit var db: WorkDatabase
     private lateinit var workDao: WorkDAO
