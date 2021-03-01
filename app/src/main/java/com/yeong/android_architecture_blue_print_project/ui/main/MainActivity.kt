@@ -1,12 +1,19 @@
 package com.yeong.android_architecture_blue_print_project.ui.main
 
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
+import com.yeong.android_architecture_blue_print_project.BaseActivity
 import com.yeong.android_architecture_blue_print_project.R
+import com.yeong.android_architecture_blue_print_project.databinding.ActivityMainBinding
 
-class MainActivity : AppCompatActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+class MainActivity : BaseActivity<ActivityMainBinding>() {
+
+    override val layoutId: Int
+        get() = R.layout.activity_main
+
+    override fun initView() {
+
+    }
+
+    override fun initBinding() {
+
     }
 }
