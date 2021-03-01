@@ -12,6 +12,8 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
         get() = R.layout.activity_main
 
     override fun initView() {
+        setSupportActionBar(viewBinding.toolbar)
+
         supportFragmentManager.replace(R.id.fragment_container, TaskFragment::class.java)
     }
 

@@ -4,6 +4,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.ActionBar
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
@@ -33,5 +35,8 @@ abstract class BaseFragment<T : ViewDataBinding> : Fragment() {
         initView()
         initBinding()
     }
+
+    protected fun getActivityActionBar(): ActionBar? =
+        (requireActivity() as AppCompatActivity).supportActionBar
 
 }

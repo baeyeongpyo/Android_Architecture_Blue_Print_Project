@@ -5,4 +5,8 @@
     <string name="all_task">all task</string>
     <string name="yet_complete">yet complete</string>
     <string name="complete">complete</string>
+
+    <string name="create_new_work">create work</string>
+    <string name="task_work_list">work list</string>
+
 </resources>

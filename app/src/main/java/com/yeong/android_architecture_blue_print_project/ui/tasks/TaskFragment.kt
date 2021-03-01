@@ -12,6 +12,8 @@ class TaskFragment : BaseFragment<FragmentTaskBinding>() {
 
     override fun initView() {
         viewBinding.tasKRv.addItemDecoration(TaskListItemDecoration(requireContext()))
+
+        getActivityActionBar()?.title = resources.getString(R.string.task_work_list)
     }
 
     override fun initBinding() {
