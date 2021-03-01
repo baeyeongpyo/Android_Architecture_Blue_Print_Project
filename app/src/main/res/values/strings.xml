@@ -8,5 +8,7 @@
 
     <string name="create_new_work">create work</string>
     <string name="task_work_list">work list</string>
+    <string name="todo_work_title_input">ToDo Work Title input</string>
+    <string name="todo_work_content_input">ToDo Work Content input</string>
 
 </resources>

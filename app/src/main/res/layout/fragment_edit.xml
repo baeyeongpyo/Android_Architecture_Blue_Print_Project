@@ -22,12 +22,18 @@
                 android:id="@+id/edit_work_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:lines="1" />
+                android:background="@android:color/transparent"
+                android:hint="@string/todo_work_title_input"
+                android:lines="1"
+                android:padding="8dp" />
 
             <androidx.appcompat.widget.AppCompatEditText
                 android:id="@+id/edit_work_content"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:hint="@string/todo_work_content_input"
+                android:padding="8dp" />
 
         </LinearLayout>
 
