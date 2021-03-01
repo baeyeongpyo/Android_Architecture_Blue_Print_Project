@@ -29,6 +29,7 @@ abstract class BaseFragment<T : ViewDataBinding> : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        viewBinding.lifecycleOwner = viewLifecycleOwner
         initView()
         initBinding()
     }
