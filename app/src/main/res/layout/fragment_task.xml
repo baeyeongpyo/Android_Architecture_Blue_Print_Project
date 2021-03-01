@@ -29,7 +29,7 @@
         <include
             android:id="@+id/empty_view"
             layout="@layout/empty_view"
-            android:visibility="gone" />
+            android:visibility="visible" />
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 

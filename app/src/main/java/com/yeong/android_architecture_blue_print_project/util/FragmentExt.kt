@@ -17,4 +17,16 @@ object FragmentExt {
             .commit()
     }
 
+    fun FragmentManager.replaceBackStack(
+        @IdRes containerId: Int,
+        backStackTagName: String,
+        fragmentClass: Class<out Fragment>,
+        args: Bundle? = null
+    ) {
+        beginTransaction()
+            .addToBackStack(backStackTagName)
+            .replace(containerId, fragmentClass, args)
+            .commit()
+    }
+
 }
