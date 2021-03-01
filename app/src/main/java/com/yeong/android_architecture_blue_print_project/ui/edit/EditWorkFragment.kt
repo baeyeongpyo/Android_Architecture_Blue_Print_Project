@@ -12,11 +12,6 @@ class EditWorkFragment : BaseFragment<FragmentEditBinding>() {
         get() = R.layout.fragment_edit
 
     override fun initView() {
-        getActivityActionBar()?.run {
-            setDisplayHomeAsUpEnabled(true)
-            title = resources.getString(R.string.create_new_work)
-        }
-
         requireActivity().onBackPressedDispatcher.addCallback(
             viewLifecycleOwner,
             object : OnBackPressedCallback(true) {
@@ -24,7 +19,14 @@ class EditWorkFragment : BaseFragment<FragmentEditBinding>() {
                     replaceTaskFragmentPage()
                 }
             })
+    }
 
+    override fun onResume() {
+        super.onResume()
+        getActivityActionBar()?.run {
+            setDisplayHomeAsUpEnabled(true)
+            title = resources.getString(R.string.create_new_work)
+        }
     }
 
     private fun replaceTaskFragmentPage() {
