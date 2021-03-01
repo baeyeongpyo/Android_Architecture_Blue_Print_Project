@@ -2,6 +2,9 @@ package com.yeong.android_architecture_blue_print_project.ui.tasks
 
 import android.view.Menu
 import android.view.MenuInflater
+import android.view.MenuItem
+import android.view.View
+import androidx.appcompat.widget.PopupMenu
 import com.yeong.android_architecture_blue_print_project.BaseFragment
 import com.yeong.android_architecture_blue_print_project.R
 import com.yeong.android_architecture_blue_print_project.databinding.FragmentTaskBinding
@@ -46,4 +49,21 @@ class TaskFragment : BaseFragment<FragmentTaskBinding>() {
     override fun initBinding() {
 
     }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean = when (item.itemId) {
+        R.id.task_filter -> {
+            popFilterMenuList()
+            true
+        }
+        else -> false
+    }
+
+    private fun popFilterMenuList() {
+        val popMenuTargetView = activity?.findViewById<View>(R.id.task_filter) ?: return
+        PopupMenu(requireContext(), popMenuTargetView).run {
+            menuInflater.inflate(R.menu.filter_menu, menu)
+            show()
+        }
+    }
+
 }
