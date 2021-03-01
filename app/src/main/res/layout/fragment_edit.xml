@@ -33,13 +33,9 @@
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/work_edit_done_fab"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="24dp"
+            style="@style/default_fab"
             android:src="@drawable/baseline_check_white_24dp"
-            app:fabSize="normal"
             app:layout_anchor="@id/work_edit_parent_layout"
-            app:layout_anchorGravity="bottom|end"
             tools:ignore="ContentDescription" />
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
