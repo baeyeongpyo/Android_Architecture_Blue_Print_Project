@@ -1,5 +1,7 @@
 package com.yeong.android_architecture_blue_print_project.ui.tasks
 
+import android.view.Menu
+import android.view.MenuInflater
 import com.yeong.android_architecture_blue_print_project.BaseFragment
 import com.yeong.android_architecture_blue_print_project.R
 import com.yeong.android_architecture_blue_print_project.databinding.FragmentTaskBinding
@@ -22,8 +24,15 @@ class TaskFragment : BaseFragment<FragmentTaskBinding>() {
         getActivityActionBar()?.run {
             setDisplayHomeAsUpEnabled(false)
             title = resources.getString(R.string.task_work_list)
+            setHasOptionsMenu(true)
         }
     }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater.inflate(R.menu.tasks_menu, menu)
+    }
+
 
     private fun addWorkPageChange() {
         parentFragmentManager.replaceBackStack(
