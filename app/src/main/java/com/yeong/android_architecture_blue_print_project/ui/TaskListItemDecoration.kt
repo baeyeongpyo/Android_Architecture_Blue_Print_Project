@@ -18,7 +18,7 @@ class TaskListItemDecoration(context: Context) : RecyclerView.ItemDecoration() {
 
         for (i in 0..childCount) {
             val view = parent.getChildAt(i)
-            view.setPadding(dp8, dp6, dp8, dp6)
+            view?.setPadding(dp8, dp6, dp8, dp6)
         }
 
     }
