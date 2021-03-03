@@ -4,6 +4,7 @@ import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.widget.PopupMenu
 import com.yeong.android_architecture_blue_print_project.BaseFragment
 import com.yeong.android_architecture_blue_print_project.R
@@ -62,8 +63,31 @@ class TaskFragment : BaseFragment<FragmentTaskBinding>() {
         val popMenuTargetView = activity?.findViewById<View>(R.id.task_filter) ?: return
         PopupMenu(requireContext(), popMenuTargetView).run {
             menuInflater.inflate(R.menu.filter_menu, menu)
+            this.setOnMenuItemClickListener(::popMenuItemClick)
             show()
         }
     }
+
+    private fun popMenuItemClick(menuItem: MenuItem): Boolean = when (menuItem.itemId) {
+        R.id.filter_all -> {
+            selectOptionAllTask()
+            true
+        }
+        R.id.filter_yet_complete -> {
+            selectOptionYetComplete()
+            true
+        }
+        R.id.filter_complete -> {
+            selectOptionComplete()
+            true
+        }
+        else -> false
+    }
+
+    private fun selectOptionAllTask() {}
+
+    private fun selectOptionYetComplete() {}
+
+    private fun selectOptionComplete() {}
 
 }
