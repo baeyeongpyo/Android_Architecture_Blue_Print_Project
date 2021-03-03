@@ -2,10 +2,12 @@ package com.yeong.android_architecture_blue_print_project.ui.edit
 
 import android.view.MenuItem
 import androidx.activity.OnBackPressedCallback
+import androidx.core.os.bundleOf
 import com.yeong.android_architecture_blue_print_project.BaseFragment
 import com.yeong.android_architecture_blue_print_project.R
 import com.yeong.android_architecture_blue_print_project.databinding.FragmentEditBinding
 import com.yeong.android_architecture_blue_print_project.ui.HomeOptionItemSelectProvider
+import com.yeong.android_architecture_blue_print_project.ui.tasks.TaskFragment
 
 class EditWorkFragment : BaseFragment<FragmentEditBinding>(), HomeOptionItemSelectProvider {
 
@@ -20,6 +22,12 @@ class EditWorkFragment : BaseFragment<FragmentEditBinding>(), HomeOptionItemSele
                     replaceTaskFragmentPage()
                 }
             })
+
+
+        viewBinding.workEditDoneFab.setOnClickListener {
+            parentFragmentManager.setFragmentResult(TaskFragment.FRAGMENT_STACK_NAME, bundleOf())
+            replaceTaskFragmentPage()
+        }
     }
 
     override fun onResume() {
@@ -33,8 +41,8 @@ class EditWorkFragment : BaseFragment<FragmentEditBinding>(), HomeOptionItemSele
 
 
     private fun replaceTaskFragmentPage() {
-        parentFragmentManager
-            .popBackStack()
+        parentFragmentManager.popBackStack()
+
     }
 
     override fun onSelectHomeOptionItemSelect(item: MenuItem): Boolean {
