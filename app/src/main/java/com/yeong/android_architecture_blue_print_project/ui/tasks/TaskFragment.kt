@@ -17,9 +17,12 @@ class TaskFragment : BaseFragment<FragmentTaskBinding>() {
     override val layoutId: Int
         get() = R.layout.fragment_task
 
+    private val tasksAdapter  : TasksListAdapter by lazy { TasksListAdapter() }
+
     override fun initView() {
         viewBinding.tasKRv.addItemDecoration(TaskListItemDecoration(requireContext()))
         viewBinding.taskAddFab.setOnClickListener { addWorkPageChange() }
+        viewBinding.tasKRv.adapter = tasksAdapter
     }
 
     override fun onResume() {
