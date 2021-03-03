@@ -1,7 +1,5 @@
 package com.yeong.android_architecture_blue_print_project.ui.main
 
-import android.view.MenuItem
-import android.widget.Toast
 import com.yeong.android_architecture_blue_print_project.BaseActivity
 import com.yeong.android_architecture_blue_print_project.R
 import com.yeong.android_architecture_blue_print_project.databinding.ActivityMainBinding
