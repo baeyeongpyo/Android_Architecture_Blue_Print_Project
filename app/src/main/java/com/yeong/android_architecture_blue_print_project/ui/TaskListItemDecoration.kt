@@ -2,6 +2,9 @@ package com.yeong.android_architecture_blue_print_project.ui
 
 import android.content.Context
 import android.graphics.Canvas
+import android.graphics.Rect
+import android.view.View
+import androidx.core.view.updateLayoutParams
 import androidx.recyclerview.widget.RecyclerView
 
 class TaskListItemDecoration(context: Context) : RecyclerView.ItemDecoration() {
@@ -11,15 +14,16 @@ class TaskListItemDecoration(context: Context) : RecyclerView.ItemDecoration() {
     private val dp8 = (dpSize * 8).toInt()
     private val dp6 = (dpSize * 6).toInt()
 
-    override fun onDraw(c: Canvas, parent: RecyclerView, state: RecyclerView.State) {
-        super.onDraw(c, parent, state)
-
-        val childCount = parent.childCount
-
-        for (i in 0..childCount) {
-            val view = parent.getChildAt(i)
-            view?.setPadding(dp8, dp6, dp8, dp6)
-        }
-
+    override fun getItemOffsets(
+        outRect: Rect,
+        view: View,
+        parent: RecyclerView,
+        state: RecyclerView.State
+    ) {
+        super.getItemOffsets(outRect, view, parent, state)
+        outRect.top = dp6
+        outRect.bottom = dp6
+        outRect.left = dp8
+        outRect.right = dp8
     }
 }
