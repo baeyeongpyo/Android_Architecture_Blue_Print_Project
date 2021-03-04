@@ -7,6 +7,7 @@ import com.yeong.android_architecture_blue_print_project.BaseFragment
 import com.yeong.android_architecture_blue_print_project.R
 import com.yeong.android_architecture_blue_print_project.databinding.FragmentEditBinding
 import com.yeong.android_architecture_blue_print_project.ui.HomeOptionItemSelectProvider
+import com.yeong.android_architecture_blue_print_project.ui.detail.DetailWorkFragment
 import com.yeong.android_architecture_blue_print_project.ui.tasks.TaskFragment
 
 class EditWorkFragment : BaseFragment<FragmentEditBinding>(), HomeOptionItemSelectProvider {
@@ -26,6 +27,10 @@ class EditWorkFragment : BaseFragment<FragmentEditBinding>(), HomeOptionItemSele
 
         viewBinding.workEditDoneFab.setOnClickListener {
             parentFragmentManager.setFragmentResult(TaskFragment.FRAGMENT_STACK_NAME, bundleOf())
+            parentFragmentManager.setFragmentResult(
+                DetailWorkFragment.FRAGMENT_STACK_NAME,
+                bundleOf()
+            )
             replaceTaskFragmentPage()
         }
     }
