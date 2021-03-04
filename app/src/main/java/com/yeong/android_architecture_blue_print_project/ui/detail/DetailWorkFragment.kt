@@ -2,6 +2,7 @@ package com.yeong.android_architecture_blue_print_project.ui.detail
 
 import android.view.Menu
 import android.view.MenuInflater
+import android.view.MenuItem
 import com.yeong.android_architecture_blue_print_project.BaseFragment
 import com.yeong.android_architecture_blue_print_project.R
 import com.yeong.android_architecture_blue_print_project.data.Work
@@ -35,6 +36,21 @@ class DetailWorkFragment : BaseFragment<FragmentTaskDetailBinding>() {
         super.onCreateOptionsMenu(menu, inflater)
         inflater.inflate(R.menu.task_detail_option_menu, menu)
     }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean =
+        when (item.itemId) {
+            R.id.work_edit -> {
+                // TODO
+                true
+            }
+
+            R.id.work_delete -> {
+                // TODO
+                true
+            }
+            else -> false
+        }
+
 
     override fun initBinding() {
 
