@@ -8,8 +8,9 @@ import com.yeong.android_architecture_blue_print_project.R
 import com.yeong.android_architecture_blue_print_project.data.Work
 import com.yeong.android_architecture_blue_print_project.data.Work.Companion.PARCEL_WORK
 import com.yeong.android_architecture_blue_print_project.databinding.FragmentTaskDetailBinding
+import com.yeong.android_architecture_blue_print_project.ui.HomeOptionItemSelectProvider
 
-class DetailWorkFragment : BaseFragment<FragmentTaskDetailBinding>() {
+class DetailWorkFragment : BaseFragment<FragmentTaskDetailBinding>(), HomeOptionItemSelectProvider {
 
     override val layoutId: Int
         get() = R.layout.fragment_task_detail
@@ -31,7 +32,6 @@ class DetailWorkFragment : BaseFragment<FragmentTaskDetailBinding>() {
         }
     }
 
-
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
         inflater.inflate(R.menu.task_detail_option_menu, menu)
@@ -51,6 +51,10 @@ class DetailWorkFragment : BaseFragment<FragmentTaskDetailBinding>() {
             else -> false
         }
 
+    override fun onSelectHomeOptionItemSelect(item: MenuItem): Boolean {
+        parentFragmentManager.popBackStack()
+        return true
+    }
 
     override fun initBinding() {
 
