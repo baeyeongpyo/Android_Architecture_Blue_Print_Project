@@ -18,9 +18,6 @@ class TaskViewModel(
     private val _tasks = MutableLiveData<List<Work>>()
     val tasks: LiveData<List<Work>> = _tasks
 
-    private val _toastMessage: MutableLiveData<String> = MutableLiveData()
-    val toastMessage: LiveData<String> = _toastMessage
-
     var taskFilter: TaskFilter = TaskFilter.ALL_WORK
         private set
 
