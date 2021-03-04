@@ -26,13 +26,15 @@ abstract class BaseActivity<T : ViewDataBinding> : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        supportFragmentManager.fragments
-            .filter { it.isVisible }
-            .filter { it is HomeOptionItemSelectProvider }
-            .map { it as HomeOptionItemSelectProvider }
-            .forEach {
-                if (it.onSelectHomeOptionItemSelect(item)) return true
-            }
+        if ( item.itemId == android.R.id.home) {
+            supportFragmentManager.fragments
+                .filter { it.isVisible }
+                .filter { it is HomeOptionItemSelectProvider }
+                .map { it as HomeOptionItemSelectProvider }
+                .forEach {
+                    if (it.onSelectHomeOptionItemSelect(item)) return true
+                }
+        }
         return super.onOptionsItemSelected(item)
     }
 }
