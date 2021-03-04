@@ -68,7 +68,7 @@ class TaskFragment : BaseFragment<FragmentTaskBinding>(), FragmentResultListener
     }
 
     override fun initBinding() {
-
+        viewBinding.taskViewModel = tasksViewModel
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean = when (item.itemId) {

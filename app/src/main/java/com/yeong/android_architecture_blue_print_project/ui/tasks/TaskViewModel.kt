@@ -1,9 +1,6 @@
 package com.yeong.android_architecture_blue_print_project.ui.tasks
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import com.yeong.android_architecture_blue_print_project.data.Result
 import com.yeong.android_architecture_blue_print_project.data.Work
 import com.yeong.android_architecture_blue_print_project.data.WorkRepository
@@ -15,8 +12,11 @@ class TaskViewModel(
     private val workRepo: WorkRepository
 ) : ViewModel() {
 
-    private val _tasks = MutableLiveData<List<Work>>()
+    private val _tasks = MutableLiveData<List<Work>>(null)
     val tasks: LiveData<List<Work>> = _tasks
+
+    val isTaskListEmpty: LiveData<Boolean> =
+        Transformations.map(_tasks) { it?.isNullOrEmpty() ?: true }
 
     var taskFilter: TaskFilter = TaskFilter.ALL_WORK
         private set

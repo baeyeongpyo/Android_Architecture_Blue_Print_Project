@@ -6,6 +6,11 @@
 
     <data>
 
+        <variable
+            name="taskViewModel"
+            type="com.yeong.android_architecture_blue_print_project.ui.tasks.TaskViewModel" />
+
+        <import type="android.view.View" />
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
@@ -14,6 +19,7 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/tasK_rv"
+            listItem="@{taskViewModel.tasks}"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
@@ -30,7 +36,7 @@
         <include
             android:id="@+id/empty_view"
             layout="@layout/empty_view"
-            android:visibility="visible" />
+            android:visibility="@{taskViewModel.isTaskListEmpty ? View.VISIBLE : View.GONE, default = visible}" />
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
