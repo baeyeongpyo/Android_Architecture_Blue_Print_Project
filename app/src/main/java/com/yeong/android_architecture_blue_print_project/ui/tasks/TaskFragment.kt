@@ -1,24 +1,20 @@
 package com.yeong.android_architecture_blue_print_project.ui.tasks
 
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.widget.PopupMenu
-import androidx.core.os.bundleOf
 import androidx.fragment.app.FragmentResultListener
 import androidx.lifecycle.ViewModelProvider
 import com.yeong.android_architecture_blue_print_project.BaseFragment
 import com.yeong.android_architecture_blue_print_project.R
-import com.yeong.android_architecture_blue_print_project.data.Work
 import com.yeong.android_architecture_blue_print_project.databinding.FragmentTaskBinding
 import com.yeong.android_architecture_blue_print_project.ui.TaskListItemDecoration
 import com.yeong.android_architecture_blue_print_project.ui.ViewModelFactory
 import com.yeong.android_architecture_blue_print_project.ui.edit.EditWorkFragment
 import com.yeong.android_architecture_blue_print_project.util.FragmentExt.replaceBackStack
-import org.koin.androidx.viewmodel.factory.StateViewModelFactory
 
 class TaskFragment : BaseFragment<FragmentTaskBinding>(), FragmentResultListener {
 
@@ -71,6 +67,21 @@ class TaskFragment : BaseFragment<FragmentTaskBinding>(), FragmentResultListener
 
     override fun initBinding() {
         viewBinding.taskViewModel = tasksViewModel
+        tasksViewModel.taskFilterLiveData.observe(viewLifecycleOwner) { taskFilter ->
+
+            val filterStringResId = when (taskFilter) {
+                TaskFilter.ALL_WORK -> R.string.all_task
+                TaskFilter.YET_COMPLETE_WORK -> R.string.yet_complete
+                TaskFilter.COMPLETE_WORK -> R.string.complete
+                else -> return@observe
+            }
+
+            val actionBarTitleString = resources.getString(R.string.task_work_list) +
+                    " ( ${resources.getString(filterStringResId)} )"
+
+            getActivityActionBar()?.title = actionBarTitleString
+
+        }
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean = when (item.itemId) {

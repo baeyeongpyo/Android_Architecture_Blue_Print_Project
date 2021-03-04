@@ -18,11 +18,19 @@ class TaskViewModel(
     val isTaskListEmpty: LiveData<Boolean> =
         Transformations.map(_tasks) { it?.isNullOrEmpty() ?: true }
 
+    private val _taskFilterLiveData: MutableLiveData<TaskFilter> = MutableLiveData()
+    val taskFilterLiveData: LiveData<TaskFilter> = _taskFilterLiveData
+
     var taskFilter: TaskFilter = TaskFilter.ALL_WORK
         private set
 
+    init {
+        setFilter(TaskFilter.ALL_WORK)
+    }
+
     fun setFilter(filter: TaskFilter) {
         taskFilter = filter
+        _taskFilterLiveData.postValue(filter)
         getTaskData()
     }
 
