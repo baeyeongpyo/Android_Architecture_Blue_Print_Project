@@ -27,6 +27,7 @@ abstract class BaseActivity<T : ViewDataBinding> : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         supportFragmentManager.fragments
+            .filter { it.isVisible }
             .filter { it is HomeOptionItemSelectProvider }
             .map { it as HomeOptionItemSelectProvider }
             .forEach {
