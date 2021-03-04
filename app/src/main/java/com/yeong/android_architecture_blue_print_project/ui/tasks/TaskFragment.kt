@@ -8,10 +8,12 @@ import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.widget.PopupMenu
 import androidx.fragment.app.FragmentResultListener
+import androidx.lifecycle.ViewModelProvider
 import com.yeong.android_architecture_blue_print_project.BaseFragment
 import com.yeong.android_architecture_blue_print_project.R
 import com.yeong.android_architecture_blue_print_project.databinding.FragmentTaskBinding
 import com.yeong.android_architecture_blue_print_project.ui.TaskListItemDecoration
+import com.yeong.android_architecture_blue_print_project.ui.ViewModelFactory
 import com.yeong.android_architecture_blue_print_project.ui.edit.EditWorkFragment
 import com.yeong.android_architecture_blue_print_project.util.FragmentExt.replaceBackStack
 
@@ -21,6 +23,9 @@ class TaskFragment : BaseFragment<FragmentTaskBinding>(), FragmentResultListener
         get() = R.layout.fragment_task
 
     private val tasksAdapter: TasksListAdapter by lazy { TasksListAdapter() }
+
+    private val viewModelFactory by lazy { ViewModelFactory.getInstance(requireActivity().application) }
+    private lateinit var tasksViewModel: TaskViewModel
 
     companion object {
         const val FRAGMENT_STACK_NAME = "tasksPage"
@@ -37,7 +42,8 @@ class TaskFragment : BaseFragment<FragmentTaskBinding>(), FragmentResultListener
             setHasOptionsMenu(true)
         }
 
-        Log.i(FRAGMENT_STACK_NAME, arguments?.getString("test1") ?: "null")
+        tasksViewModel = ViewModelProvider(this, viewModelFactory).get(TaskViewModel::class.java)
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -98,10 +104,10 @@ class TaskFragment : BaseFragment<FragmentTaskBinding>(), FragmentResultListener
         else -> false
     }
 
-    private fun selectOptionAllTask() {}
+    private fun selectOptionAllTask() = tasksViewModel.setFilter(TaskFilter.ALL_WORK)
 
-    private fun selectOptionYetComplete() {}
+    private fun selectOptionYetComplete() = tasksViewModel.setFilter(TaskFilter.YET_COMPLETE_WORK)
 
-    private fun selectOptionComplete() {}
+    private fun selectOptionComplete() = tasksViewModel.setFilter(TaskFilter.COMPLETE_WORK)
 
 }

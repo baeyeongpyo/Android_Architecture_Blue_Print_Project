@@ -9,6 +9,7 @@ import com.yeong.android_architecture_blue_print_project.data.WorkRepositoryImpl
 import com.yeong.android_architecture_blue_print_project.data.local.LocalWorkDataSourceImpl
 import com.yeong.android_architecture_blue_print_project.data.local.WorkDAO
 import com.yeong.android_architecture_blue_print_project.data.local.WorkDatabase
+import com.yeong.android_architecture_blue_print_project.ui.support.ResourceProvider
 import com.yeong.android_architecture_blue_print_project.ui.tasks.TaskViewModel
 
 class ViewModelFactory private constructor(private val application: Application) :
@@ -38,6 +39,10 @@ class ViewModelFactory private constructor(private val application: Application)
         WorkRepositoryImpl(
             LocalWorkDataSourceImpl(workDao)
         )
+    }
+
+    private val resourceProvider: ResourceProvider by lazy {
+        ResourceProvider(application)
     }
 
     @Suppress("UNCHECKED_CAST")
