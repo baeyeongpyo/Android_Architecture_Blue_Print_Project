@@ -17,7 +17,7 @@ class DetailWorkFragment : BaseFragment<FragmentTaskDetailBinding>(), HomeOption
 
     override fun initView() {
         getActivityActionBar()?.run {
-            setDisplayHomeAsUpEnabled(false)
+            setDisplayHomeAsUpEnabled(true)
             title = resources.getString(R.string.task_work_detail)
             setHasOptionsMenu(true)
         }
