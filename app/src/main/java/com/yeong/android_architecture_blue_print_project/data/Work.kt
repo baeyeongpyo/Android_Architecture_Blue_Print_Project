@@ -15,6 +15,11 @@ data class Work(
     @ColumnInfo(name = "isComplete") var isComplete: Boolean = false, // added in version 2
     @ColumnInfo(name = "workCreateDate") var workCreateDate: Long = System.currentTimeMillis() // added in version 3
 ) : Parcelable {
+
+    companion object{
+        const val PARCEL_WORK = "work"
+    }
+
     constructor(title: String, content: String) : this(
         null,
         title,

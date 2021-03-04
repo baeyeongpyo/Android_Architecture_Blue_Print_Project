@@ -1,13 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        <CheckBox
+            android:id="@+id/work_detail_check"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:checked="false"
+            tools:text="active work" />
+
+        <TextView
+            android:id="@+id/work_detail_title"
+            style="@style/textView_default_style"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:text="work title text view" />
+
+        <TextView
+            android:id="@+id/work_detail_content"
+            style="@style/textView_default_style"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:text="work content text view" />
+
+    </LinearLayout>
 </layout>

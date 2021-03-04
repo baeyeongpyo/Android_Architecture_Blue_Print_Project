@@ -1,14 +1,24 @@
 <resources>
     <string name="app_name">Android_Architecture_Blue_Print_Project</string>
     <string name="todo_work_empty">Todo Work empty</string>
+
+    <!--menu string-->
     <string name="task_filter">task filter</string>
     <string name="all_task">all task</string>
     <string name="yet_complete">yet complete</string>
     <string name="complete">complete</string>
+    <string name="work_edit">edit</string>
+    <string name="work_delete">delete</string>
 
+    <!--toolbar title string-->
     <string name="create_new_work">create work</string>
     <string name="task_work_list">work list</string>
+    <string name="task_work_detail">work detail</string>
+
+    <!--edit page string-->
     <string name="todo_work_title_input">ToDo Work Title input</string>
     <string name="todo_work_content_input">ToDo Work Content input</string>
+
+
 
 </resources>
