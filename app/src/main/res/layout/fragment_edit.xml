@@ -6,6 +6,9 @@
 
     <data>
 
+        <variable
+            name="editViewModel"
+            type="com.yeong.android_architecture_blue_print_project.ui.edit.WorkEditViewModel" />
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
@@ -25,7 +28,8 @@
                 android:background="@android:color/transparent"
                 android:hint="@string/todo_work_title_input"
                 android:lines="1"
-                android:padding="8dp" />
+                android:padding="8dp"
+                android:text="@={editViewModel.receiveTitle}" />
 
             <androidx.appcompat.widget.AppCompatEditText
                 android:id="@+id/edit_work_content"
@@ -33,13 +37,15 @@
                 android:layout_height="wrap_content"
                 android:background="@android:color/transparent"
                 android:hint="@string/todo_work_content_input"
-                android:padding="8dp" />
+                android:padding="8dp"
+                android:text="@={editViewModel.receiveContent}" />
 
         </LinearLayout>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/work_edit_done_fab"
             style="@style/default_fab"
+            android:onClick="@{v -> editViewModel.saveWork()}"
             android:src="@drawable/baseline_check_white_24dp"
             app:layout_anchor="@id/work_edit_parent_layout"
             tools:ignore="ContentDescription" />

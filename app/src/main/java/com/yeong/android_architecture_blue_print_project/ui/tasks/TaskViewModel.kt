@@ -50,7 +50,7 @@ class TaskViewModel(
         listData.onSuccess {
             _tasks.postValue(it)
         }.onFail { _, _ ->
-            _tasks.postValue(null)
+            _tasks.postValue(listOf())
         }
     }
 

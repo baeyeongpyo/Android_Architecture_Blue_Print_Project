@@ -19,6 +19,9 @@
     <string name="todo_work_title_input">ToDo Work Title input</string>
     <string name="todo_work_content_input">ToDo Work Content input</string>
 
+    <!--toast warning string-->
+    <string name="edit_title_input_empty">work title data empty</string>
+    <string name="edit_content_input_empty">work content data empty</string>
 
 
 </resources>

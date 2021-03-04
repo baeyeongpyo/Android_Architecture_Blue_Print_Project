@@ -7,15 +7,18 @@ import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.widget.PopupMenu
+import androidx.core.os.bundleOf
 import androidx.fragment.app.FragmentResultListener
 import androidx.lifecycle.ViewModelProvider
 import com.yeong.android_architecture_blue_print_project.BaseFragment
 import com.yeong.android_architecture_blue_print_project.R
+import com.yeong.android_architecture_blue_print_project.data.Work
 import com.yeong.android_architecture_blue_print_project.databinding.FragmentTaskBinding
 import com.yeong.android_architecture_blue_print_project.ui.TaskListItemDecoration
 import com.yeong.android_architecture_blue_print_project.ui.ViewModelFactory
 import com.yeong.android_architecture_blue_print_project.ui.edit.EditWorkFragment
 import com.yeong.android_architecture_blue_print_project.util.FragmentExt.replaceBackStack
+import org.koin.androidx.viewmodel.factory.StateViewModelFactory
 
 class TaskFragment : BaseFragment<FragmentTaskBinding>(), FragmentResultListener {
 
@@ -24,7 +27,6 @@ class TaskFragment : BaseFragment<FragmentTaskBinding>(), FragmentResultListener
 
     private val tasksAdapter: TasksListAdapter by lazy { TasksListAdapter() }
 
-    private val viewModelFactory by lazy { ViewModelFactory.getInstance(requireActivity().application) }
     private lateinit var tasksViewModel: TaskViewModel
 
     companion object {
@@ -42,8 +44,8 @@ class TaskFragment : BaseFragment<FragmentTaskBinding>(), FragmentResultListener
             setHasOptionsMenu(true)
         }
 
-        tasksViewModel = ViewModelProvider(this, viewModelFactory).get(TaskViewModel::class.java)
-
+        val factory = ViewModelFactory(this)
+        tasksViewModel = ViewModelProvider(this, factory).get(TaskViewModel::class.java)
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {

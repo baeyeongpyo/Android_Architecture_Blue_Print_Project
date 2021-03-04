@@ -1,10 +1,10 @@
 package com.yeong.android_architecture_blue_print_project.ui.support
 
-import android.app.Application
+import android.content.Context
 import androidx.annotation.StringRes
 
-class ResourceProvider(private val context: Application) {
+class ResourceProvider(private val context: Context) {
 
-    private fun getString(@StringRes stringId: Int) = context.getString(stringId)
+    fun getString(@StringRes stringId: Int) = context.getString(stringId)
 
 }
