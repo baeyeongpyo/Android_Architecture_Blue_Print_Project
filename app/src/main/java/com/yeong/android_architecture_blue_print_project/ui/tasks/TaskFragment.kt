@@ -66,7 +66,7 @@ class TaskFragment : BaseFragment<FragmentTaskBinding>(), FragmentResultListener
     }
 
     override fun onFragmentResult(requestKey: String, result: Bundle) {
-
+        tasksViewModel.getTaskData()
     }
 
     override fun initBinding() {
@@ -133,6 +133,7 @@ class TaskFragment : BaseFragment<FragmentTaskBinding>(), FragmentResultListener
     }
 
     override fun workItemClickEvent(work: Work) {
+        parentFragmentManager.setFragmentResultListener(FRAGMENT_STACK_NAME, this, this)
         parentFragmentManager.replaceBackStack(
             R.id.fragment_container,
             FRAGMENT_STACK_NAME,

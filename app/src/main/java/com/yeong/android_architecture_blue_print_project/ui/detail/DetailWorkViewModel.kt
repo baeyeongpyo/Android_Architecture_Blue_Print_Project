@@ -15,12 +15,16 @@ class DetailWorkViewModel(
     savedStateHandler: SavedStateHandle
 ) : ViewModel() {
 
+    companion object {
+        const val WORK_REMOVE_SUCCESS = 1
+    }
+
     private var workData = savedStateHandler.get<Work>(Work.PARCEL_WORK)
 
     private val _isCompleteWork: MutableLiveData<Boolean> = MutableLiveData(workData?.isComplete)
     val isCompleteWork: LiveData<Boolean> = _isCompleteWork
 
-    val isCompleteWorkText = Transformations.map(_isCompleteWork) {
+    val isCompleteWorkText: LiveData<String> = Transformations.map(_isCompleteWork) {
         val resourceId = if (it == true) R.string.work_complete else R.string.work_yet_complete
         resourceProvider.getString(resourceId)
     }
@@ -30,6 +34,9 @@ class DetailWorkViewModel(
 
     private val _workContent: MutableLiveData<String> = MutableLiveData(workData?.content)
     val workContent: LiveData<String> = _workContent
+
+    private val _singleEvent: MutableLiveData<Int> = MutableLiveData()
+    val singleEvent: LiveData<Int> = _singleEvent
 
     fun changeWork(work: Work) {
         workData = work
@@ -48,6 +55,14 @@ class DetailWorkViewModel(
         workResult.isComplete = b
         viewModelScope.launch {
             repository.updateWork(workResult)
+        }
+    }
+
+    fun removeWork() {
+        val workResult = workData ?: return
+        viewModelScope.launch {
+            repository.removeWork(workResult)
+            _singleEvent.postValue(WORK_REMOVE_SUCCESS)
         }
     }
 

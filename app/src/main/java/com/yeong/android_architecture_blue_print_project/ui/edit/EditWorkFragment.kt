@@ -38,14 +38,6 @@ class EditWorkFragment : BaseFragment<FragmentEditBinding>(), HomeOptionItemSele
 
         val factory = ViewModelFactory(this, arguments)
         editViewModel = ViewModelProvider(this, factory).get(WorkEditViewModel::class.java)
-        /*viewBinding.workEditDoneFab.setOnClickListener {
-            parentFragmentManager.setFragmentResult(TaskFragment.FRAGMENT_STACK_NAME, bundleOf())
-            parentFragmentManager.setFragmentResult(
-                DetailWorkFragment.FRAGMENT_STACK_NAME,
-                bundleOf()
-            )
-            replaceTaskFragmentPage()
-        }*/
     }
 
     private fun replaceTaskFragmentPage() {

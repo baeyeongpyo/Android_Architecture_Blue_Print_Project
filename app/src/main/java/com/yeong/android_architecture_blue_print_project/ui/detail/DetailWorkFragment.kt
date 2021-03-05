@@ -14,6 +14,7 @@ import com.yeong.android_architecture_blue_print_project.data.Work.Companion.PAR
 import com.yeong.android_architecture_blue_print_project.databinding.FragmentTaskDetailBinding
 import com.yeong.android_architecture_blue_print_project.ui.HomeOptionItemSelectProvider
 import com.yeong.android_architecture_blue_print_project.ui.ViewModelFactory
+import com.yeong.android_architecture_blue_print_project.ui.detail.DetailWorkViewModel.Companion.WORK_REMOVE_SUCCESS
 import com.yeong.android_architecture_blue_print_project.ui.edit.EditWorkFragment
 import com.yeong.android_architecture_blue_print_project.ui.tasks.TaskFragment
 import com.yeong.android_architecture_blue_print_project.util.FragmentExt.replaceBackStack
@@ -70,7 +71,7 @@ class DetailWorkFragment : BaseFragment<FragmentTaskDetailBinding>(), HomeOption
             }
 
             R.id.work_delete -> {
-                // TODO
+                detailViewModel.removeWork()
                 true
             }
             else -> false
@@ -83,6 +84,17 @@ class DetailWorkFragment : BaseFragment<FragmentTaskDetailBinding>(), HomeOption
 
     override fun initBinding() {
         viewBinding.detailViewModel = detailViewModel
+
+        detailViewModel.singleEvent.observe(viewLifecycleOwner, ::singleEvent)
+    }
+
+    private fun singleEvent(eventCode: Int) {
+        when (eventCode) {
+            WORK_REMOVE_SUCCESS -> {
+                parentFragmentManager.setFragmentResult(TaskFragment.FRAGMENT_STACK_NAME, bundleOf())
+                parentFragmentManager.popBackStack()
+            }
+        }
     }
 
     override fun onFragmentResult(requestKey: String, result: Bundle) {
