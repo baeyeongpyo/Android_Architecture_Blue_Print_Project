@@ -100,6 +100,7 @@ class DetailWorkFragment : BaseFragment<FragmentTaskDetailBinding>(), HomeOption
     override fun onFragmentResult(requestKey: String, result: Bundle) {
         when (requestKey) {
             FRAGMENT_STACK_NAME -> {
+                parentFragmentManager.setFragmentResult(TaskFragment.FRAGMENT_STACK_NAME, bundleOf())
                 arguments = (arguments ?: bundleOf()).apply { putAll(result) }
                 val work = result.getParcelable<Work>(PARCEL_WORK)
                 if (work != null) detailViewModel.changeWork(work)
