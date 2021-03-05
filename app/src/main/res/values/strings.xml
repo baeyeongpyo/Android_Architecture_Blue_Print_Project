@@ -19,6 +19,10 @@
     <string name="todo_work_title_input">ToDo Work Title input</string>
     <string name="todo_work_content_input">ToDo Work Content input</string>
 
+    <!--work state message-->
+    <string name="work_yet_complete">active work</string>
+    <string name="work_complete">complete work</string>
+
     <!--toast warning string-->
     <string name="edit_title_input_empty">work title data empty</string>
     <string name="edit_content_input_empty">work content data empty</string>

@@ -12,6 +12,7 @@ import com.yeong.android_architecture_blue_print_project.data.WorkRepositoryImpl
 import com.yeong.android_architecture_blue_print_project.data.local.LocalWorkDataSourceImpl
 import com.yeong.android_architecture_blue_print_project.data.local.WorkDAO
 import com.yeong.android_architecture_blue_print_project.data.local.WorkDatabase
+import com.yeong.android_architecture_blue_print_project.ui.detail.DetailWorkViewModel
 import com.yeong.android_architecture_blue_print_project.ui.edit.WorkEditViewModel
 import com.yeong.android_architecture_blue_print_project.ui.support.ResourceProvider
 import com.yeong.android_architecture_blue_print_project.ui.tasks.TaskViewModel
@@ -51,6 +52,9 @@ class ViewModelFactory(
             }
             modelClass.isAssignableFrom(WorkEditViewModel::class.java) -> {
                 WorkEditViewModel(workRepository, resourceProvider, handle) as T
+            }
+            modelClass.isAssignableFrom(DetailWorkViewModel::class.java) -> {
+                DetailWorkViewModel(workRepository, resourceProvider, handle) as T
             }
             else -> throw Exception("not found viewModel class : ${modelClass.canonicalName}")
         }

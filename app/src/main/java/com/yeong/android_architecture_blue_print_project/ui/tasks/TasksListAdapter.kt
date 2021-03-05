@@ -10,7 +10,13 @@ import com.yeong.android_architecture_blue_print_project.R
 import com.yeong.android_architecture_blue_print_project.data.Work
 import com.yeong.android_architecture_blue_print_project.ui.BaseViewHolder
 
-class TasksListAdapter : ListAdapter<Work, TasksListAdapter.WorkViewHolder>(diffAsync) {
+class TasksListAdapter(private val workViewHolderEventListener: WorkViewHolderItemEvent) :
+    ListAdapter<Work, TasksListAdapter.WorkViewHolder>(diffAsync) {
+
+    interface WorkViewHolderItemEvent {
+        fun completeWorkChangeEvent(boolean: Boolean)
+        fun workItemClickEvent(work: Work)
+    }
 
     companion object {
 
@@ -36,9 +42,21 @@ class TasksListAdapter : ListAdapter<Work, TasksListAdapter.WorkViewHolder>(diff
         val itemData = getItem(position)
 
         if (itemData != null) {
-            holder.completeCheckView.isChecked = itemData.isComplete
-            holder.workTitleView.text = itemData.title
-            holder.workContentView.text = itemData.content
+
+            holder.run {
+                completeCheckView.isChecked = itemData.isComplete
+                workTitleView.text = itemData.title
+                workContentView.text = itemData.content
+
+                completeCheckView.setOnCheckedChangeListener { _, b ->
+                    workViewHolderEventListener.completeWorkChangeEvent(b)
+                }
+
+                itemView.setOnClickListener {
+                    workViewHolderEventListener.workItemClickEvent(itemData)
+                }
+            }
+
         }
 
     }

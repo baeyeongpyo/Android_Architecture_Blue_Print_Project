@@ -6,22 +6,26 @@ import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.widget.PopupMenu
+import androidx.core.os.bundleOf
 import androidx.fragment.app.FragmentResultListener
 import androidx.lifecycle.ViewModelProvider
 import com.yeong.android_architecture_blue_print_project.BaseFragment
 import com.yeong.android_architecture_blue_print_project.R
+import com.yeong.android_architecture_blue_print_project.data.Work
 import com.yeong.android_architecture_blue_print_project.databinding.FragmentTaskBinding
 import com.yeong.android_architecture_blue_print_project.ui.TaskListItemDecoration
 import com.yeong.android_architecture_blue_print_project.ui.ViewModelFactory
+import com.yeong.android_architecture_blue_print_project.ui.detail.DetailWorkFragment
 import com.yeong.android_architecture_blue_print_project.ui.edit.EditWorkFragment
 import com.yeong.android_architecture_blue_print_project.util.FragmentExt.replaceBackStack
 
-class TaskFragment : BaseFragment<FragmentTaskBinding>(), FragmentResultListener {
+class TaskFragment : BaseFragment<FragmentTaskBinding>(), FragmentResultListener,
+    TasksListAdapter.WorkViewHolderItemEvent {
 
     override val layoutId: Int
         get() = R.layout.fragment_task
 
-    private val tasksAdapter: TasksListAdapter by lazy { TasksListAdapter() }
+    private val tasksAdapter: TasksListAdapter by lazy { TasksListAdapter(this) }
 
     private lateinit var tasksViewModel: TaskViewModel
 
@@ -122,5 +126,19 @@ class TaskFragment : BaseFragment<FragmentTaskBinding>(), FragmentResultListener
     private fun selectOptionYetComplete() = tasksViewModel.setFilter(TaskFilter.YET_COMPLETE_WORK)
 
     private fun selectOptionComplete() = tasksViewModel.setFilter(TaskFilter.COMPLETE_WORK)
+
+    override fun completeWorkChangeEvent(boolean: Boolean) {
+        //TODO("Not yet implemented")
+        tasksViewModel
+    }
+
+    override fun workItemClickEvent(work: Work) {
+        parentFragmentManager.replaceBackStack(
+            R.id.fragment_container,
+            FRAGMENT_STACK_NAME,
+            DetailWorkFragment::class.java,
+            bundleOf(Work.PARCEL_WORK to work)
+        )
+    }
 
 }

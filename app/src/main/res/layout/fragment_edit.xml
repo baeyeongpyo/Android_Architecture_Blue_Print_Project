@@ -45,7 +45,7 @@
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/work_edit_done_fab"
             style="@style/default_fab"
-            android:onClick="@{v -> editViewModel.saveWork()}"
+            android:onClick="@{v -> editViewModel.saveButtonEvent()}"
             android:src="@drawable/baseline_check_white_24dp"
             app:layout_anchor="@id/work_edit_parent_layout"
             tools:ignore="ContentDescription" />

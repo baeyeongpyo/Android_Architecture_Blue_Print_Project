@@ -4,6 +4,9 @@
 
     <data>
 
+        <variable
+            name="detailViewModel"
+            type="com.yeong.android_architecture_blue_print_project.ui.detail.DetailWorkViewModel" />
     </data>
 
     <LinearLayout
@@ -15,7 +18,9 @@
             android:id="@+id/work_detail_check"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:checked="false"
+            android:checked="@{detailViewModel.isCompleteWork()}"
+            android:onClick="@{detailViewModel::workCompleteClick}"
+            android:text="@{detailViewModel.isCompleteWorkText}"
             tools:text="active work" />
 
         <TextView
@@ -23,6 +28,7 @@
             style="@style/textView_default_style"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:text="@{detailViewModel.workTitle}"
             tools:text="work title text view" />
 
         <TextView
@@ -30,6 +36,7 @@
             style="@style/textView_default_style"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:text="@{detailViewModel.workContent}"
             tools:text="work content text view" />
 
     </LinearLayout>
