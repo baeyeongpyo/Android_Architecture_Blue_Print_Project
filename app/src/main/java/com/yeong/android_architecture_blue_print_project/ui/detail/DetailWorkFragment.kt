@@ -16,7 +16,7 @@ import com.yeong.android_architecture_blue_print_project.ui.HomeOptionItemSelect
 import com.yeong.android_architecture_blue_print_project.ui.ViewModelFactory
 import com.yeong.android_architecture_blue_print_project.ui.detail.DetailWorkViewModel.Companion.WORK_REMOVE_SUCCESS
 import com.yeong.android_architecture_blue_print_project.ui.edit.EditWorkFragment
-import com.yeong.android_architecture_blue_print_project.ui.tasks.TaskFragment
+import com.yeong.android_architecture_blue_print_project.ui.works.WorksFragment
 import com.yeong.android_architecture_blue_print_project.util.FragmentExt.replaceBackStack
 
 class DetailWorkFragment : BaseFragment<FragmentTaskDetailBinding>(), HomeOptionItemSelectProvider,
@@ -91,7 +91,7 @@ class DetailWorkFragment : BaseFragment<FragmentTaskDetailBinding>(), HomeOption
     private fun singleEvent(eventCode: Int) {
         when (eventCode) {
             WORK_REMOVE_SUCCESS -> {
-                parentFragmentManager.setFragmentResult(TaskFragment.FRAGMENT_STACK_NAME, bundleOf())
+                parentFragmentManager.setFragmentResult(WorksFragment.FRAGMENT_STACK_NAME, bundleOf())
                 parentFragmentManager.popBackStack()
             }
         }
@@ -100,7 +100,7 @@ class DetailWorkFragment : BaseFragment<FragmentTaskDetailBinding>(), HomeOption
     override fun onFragmentResult(requestKey: String, result: Bundle) {
         when (requestKey) {
             FRAGMENT_STACK_NAME -> {
-                parentFragmentManager.setFragmentResult(TaskFragment.FRAGMENT_STACK_NAME, bundleOf())
+                parentFragmentManager.setFragmentResult(WorksFragment.FRAGMENT_STACK_NAME, bundleOf())
                 arguments = (arguments ?: bundleOf()).apply { putAll(result) }
                 val work = result.getParcelable<Work>(PARCEL_WORK)
                 if (work != null) detailViewModel.changeWork(work)

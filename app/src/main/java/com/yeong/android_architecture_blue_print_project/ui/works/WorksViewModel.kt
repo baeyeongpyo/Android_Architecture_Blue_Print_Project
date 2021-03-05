@@ -1,4 +1,4 @@
-package com.yeong.android_architecture_blue_print_project.ui.tasks
+package com.yeong.android_architecture_blue_print_project.ui.works
 
 import androidx.lifecycle.*
 import com.yeong.android_architecture_blue_print_project.data.Result
@@ -8,7 +8,7 @@ import com.yeong.android_architecture_blue_print_project.util.ResultExt.onFail
 import com.yeong.android_architecture_blue_print_project.util.ResultExt.onSuccess
 import kotlinx.coroutines.launch
 
-class TaskViewModel(
+class WorksViewModel(
     private val workRepo: WorkRepository
 ) : ViewModel() {
 
@@ -18,17 +18,17 @@ class TaskViewModel(
     val isTaskListEmpty: LiveData<Boolean> =
         Transformations.map(_tasks) { it?.isNullOrEmpty() ?: true }
 
-    private val _taskFilterLiveData: MutableLiveData<TaskFilter> = MutableLiveData()
-    val taskFilterLiveData: LiveData<TaskFilter> = _taskFilterLiveData
+    private val _taskFilterLiveData: MutableLiveData<WorkFilter> = MutableLiveData()
+    val taskFilterLiveData: LiveData<WorkFilter> = _taskFilterLiveData
 
-    var taskFilter: TaskFilter = TaskFilter.ALL_WORK
+    var taskFilter: WorkFilter = WorkFilter.ALL_WORK
         private set
 
     init {
-        setFilter(TaskFilter.ALL_WORK)
+        setFilter(WorkFilter.ALL_WORK)
     }
 
-    fun setFilter(filter: TaskFilter) {
+    fun setFilter(filter: WorkFilter) {
         taskFilter = filter
         _taskFilterLiveData.postValue(filter)
         getTaskData()
@@ -36,9 +36,9 @@ class TaskViewModel(
 
     fun getTaskData() {
         when (taskFilter) {
-            TaskFilter.ALL_WORK -> getAllTasks()
-            TaskFilter.YET_COMPLETE_WORK -> getYetCompleteTasks()
-            TaskFilter.COMPLETE_WORK -> getCompleteTasks()
+            WorkFilter.ALL_WORK -> getAllTasks()
+            WorkFilter.YET_COMPLETE_WORK -> getYetCompleteTasks()
+            WorkFilter.COMPLETE_WORK -> getCompleteTasks()
         }
     }
 

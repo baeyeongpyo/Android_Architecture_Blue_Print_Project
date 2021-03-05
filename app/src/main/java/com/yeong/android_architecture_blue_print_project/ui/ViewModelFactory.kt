@@ -13,9 +13,9 @@ import com.yeong.android_architecture_blue_print_project.data.local.LocalWorkDat
 import com.yeong.android_architecture_blue_print_project.data.local.WorkDAO
 import com.yeong.android_architecture_blue_print_project.data.local.WorkDatabase
 import com.yeong.android_architecture_blue_print_project.ui.detail.DetailWorkViewModel
-import com.yeong.android_architecture_blue_print_project.ui.edit.WorkEditViewModel
+import com.yeong.android_architecture_blue_print_project.ui.edit.EditWorkViewModel
 import com.yeong.android_architecture_blue_print_project.ui.support.ResourceProvider
-import com.yeong.android_architecture_blue_print_project.ui.tasks.TaskViewModel
+import com.yeong.android_architecture_blue_print_project.ui.works.WorksViewModel
 
 class ViewModelFactory(
     owner: SavedStateRegistryOwner,
@@ -47,11 +47,11 @@ class ViewModelFactory(
         handle: SavedStateHandle
     ): T =
         when {
-            modelClass.isAssignableFrom(TaskViewModel::class.java) -> {
-                TaskViewModel(workRepository) as T
+            modelClass.isAssignableFrom(WorksViewModel::class.java) -> {
+                WorksViewModel(workRepository) as T
             }
-            modelClass.isAssignableFrom(WorkEditViewModel::class.java) -> {
-                WorkEditViewModel(workRepository, resourceProvider, handle) as T
+            modelClass.isAssignableFrom(EditWorkViewModel::class.java) -> {
+                EditWorkViewModel(workRepository, resourceProvider, handle) as T
             }
             modelClass.isAssignableFrom(DetailWorkViewModel::class.java) -> {
                 DetailWorkViewModel(workRepository, resourceProvider, handle) as T

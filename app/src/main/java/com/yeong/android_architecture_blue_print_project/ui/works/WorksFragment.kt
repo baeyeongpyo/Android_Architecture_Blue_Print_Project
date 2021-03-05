@@ -1,4 +1,4 @@
-package com.yeong.android_architecture_blue_print_project.ui.tasks
+package com.yeong.android_architecture_blue_print_project.ui.works
 
 import android.os.Bundle
 import android.view.Menu
@@ -19,15 +19,15 @@ import com.yeong.android_architecture_blue_print_project.ui.detail.DetailWorkFra
 import com.yeong.android_architecture_blue_print_project.ui.edit.EditWorkFragment
 import com.yeong.android_architecture_blue_print_project.util.FragmentExt.replaceBackStack
 
-class TaskFragment : BaseFragment<FragmentTaskBinding>(), FragmentResultListener,
-    TasksListAdapter.WorkViewHolderItemEvent {
+class WorksFragment : BaseFragment<FragmentTaskBinding>(), FragmentResultListener,
+    WorksListAdapter.WorkViewHolderItemEvent {
 
     override val layoutId: Int
         get() = R.layout.fragment_task
 
-    private val tasksAdapter: TasksListAdapter by lazy { TasksListAdapter(this) }
+    private val tasksAdapter: WorksListAdapter by lazy { WorksListAdapter(this) }
 
-    private lateinit var tasksViewModel: TaskViewModel
+    private lateinit var tasksViewModel: WorksViewModel
 
     companion object {
         const val FRAGMENT_STACK_NAME = "tasksPage"
@@ -45,7 +45,7 @@ class TaskFragment : BaseFragment<FragmentTaskBinding>(), FragmentResultListener
         }
 
         val factory = ViewModelFactory(this)
-        tasksViewModel = ViewModelProvider(this, factory).get(TaskViewModel::class.java)
+        tasksViewModel = ViewModelProvider(this, factory).get(WorksViewModel::class.java)
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -74,9 +74,9 @@ class TaskFragment : BaseFragment<FragmentTaskBinding>(), FragmentResultListener
         tasksViewModel.taskFilterLiveData.observe(viewLifecycleOwner) { taskFilter ->
 
             val filterStringResId = when (taskFilter) {
-                TaskFilter.ALL_WORK -> R.string.all_task
-                TaskFilter.YET_COMPLETE_WORK -> R.string.yet_complete
-                TaskFilter.COMPLETE_WORK -> R.string.complete
+                WorkFilter.ALL_WORK -> R.string.all_task
+                WorkFilter.YET_COMPLETE_WORK -> R.string.yet_complete
+                WorkFilter.COMPLETE_WORK -> R.string.complete
                 else -> return@observe
             }
 
@@ -121,11 +121,11 @@ class TaskFragment : BaseFragment<FragmentTaskBinding>(), FragmentResultListener
         else -> false
     }
 
-    private fun selectOptionAllTask() = tasksViewModel.setFilter(TaskFilter.ALL_WORK)
+    private fun selectOptionAllTask() = tasksViewModel.setFilter(WorkFilter.ALL_WORK)
 
-    private fun selectOptionYetComplete() = tasksViewModel.setFilter(TaskFilter.YET_COMPLETE_WORK)
+    private fun selectOptionYetComplete() = tasksViewModel.setFilter(WorkFilter.YET_COMPLETE_WORK)
 
-    private fun selectOptionComplete() = tasksViewModel.setFilter(TaskFilter.COMPLETE_WORK)
+    private fun selectOptionComplete() = tasksViewModel.setFilter(WorkFilter.COMPLETE_WORK)
 
     override fun completeWorkChangeEvent(work: Work, boolean: Boolean) {
         tasksViewModel.workCompleteDataUpdate(work, boolean)

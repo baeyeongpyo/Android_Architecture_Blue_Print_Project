@@ -7,7 +7,7 @@ import com.yeong.android_architecture_blue_print_project.data.WorkRepository
 import com.yeong.android_architecture_blue_print_project.ui.support.ResourceProvider
 import kotlinx.coroutines.launch
 
-class WorkEditViewModel(
+class EditWorkViewModel(
     private val repository: WorkRepository,
     private val resourceProvider: ResourceProvider,
     savedStateHandler: SavedStateHandle

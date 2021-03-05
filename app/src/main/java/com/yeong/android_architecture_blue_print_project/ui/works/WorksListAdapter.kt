@@ -1,4 +1,4 @@
-package com.yeong.android_architecture_blue_print_project.ui.tasks
+package com.yeong.android_architecture_blue_print_project.ui.works
 
 import android.view.ViewGroup
 import android.widget.CheckBox
@@ -10,8 +10,8 @@ import com.yeong.android_architecture_blue_print_project.R
 import com.yeong.android_architecture_blue_print_project.data.Work
 import com.yeong.android_architecture_blue_print_project.ui.BaseViewHolder
 
-class TasksListAdapter(private val workViewHolderEventListener: WorkViewHolderItemEvent) :
-    ListAdapter<Work, TasksListAdapter.WorkViewHolder>(diffAsync) {
+class WorksListAdapter(private val workViewHolderEventListener: WorkViewHolderItemEvent) :
+    ListAdapter<Work, WorksListAdapter.WorkViewHolder>(diffAsync) {
 
     interface WorkViewHolderItemEvent {
         fun completeWorkChangeEvent(work: Work, boolean: Boolean)

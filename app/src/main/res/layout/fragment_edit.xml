@@ -8,7 +8,7 @@
 
         <variable
             name="editViewModel"
-            type="com.yeong.android_architecture_blue_print_project.ui.edit.WorkEditViewModel" />
+            type="com.yeong.android_architecture_blue_print_project.ui.edit.EditWorkViewModel" />
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout

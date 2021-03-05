@@ -12,14 +12,14 @@ import com.yeong.android_architecture_blue_print_project.databinding.FragmentEdi
 import com.yeong.android_architecture_blue_print_project.ui.HomeOptionItemSelectProvider
 import com.yeong.android_architecture_blue_print_project.ui.ViewModelFactory
 import com.yeong.android_architecture_blue_print_project.ui.detail.DetailWorkFragment
-import com.yeong.android_architecture_blue_print_project.ui.tasks.TaskFragment
+import com.yeong.android_architecture_blue_print_project.ui.works.WorksFragment
 
 class EditWorkFragment : BaseFragment<FragmentEditBinding>(), HomeOptionItemSelectProvider {
 
     override val layoutId: Int
         get() = R.layout.fragment_edit
 
-    private lateinit var editViewModel: WorkEditViewModel
+    private lateinit var editViewModel: EditWorkViewModel
 
     override fun initView() {
         getActivityActionBar()?.run {
@@ -37,7 +37,7 @@ class EditWorkFragment : BaseFragment<FragmentEditBinding>(), HomeOptionItemSele
             })
 
         val factory = ViewModelFactory(this, arguments)
-        editViewModel = ViewModelProvider(this, factory).get(WorkEditViewModel::class.java)
+        editViewModel = ViewModelProvider(this, factory).get(EditWorkViewModel::class.java)
     }
 
     private fun replaceTaskFragmentPage() {
@@ -65,9 +65,9 @@ class EditWorkFragment : BaseFragment<FragmentEditBinding>(), HomeOptionItemSele
 
     private fun singleEvent(eventCode: Int) {
         when (eventCode) {
-            WorkEditViewModel.WORK_SAVE_SUCCESS -> {
+            EditWorkViewModel.WORK_SAVE_SUCCESS -> {
                 parentFragmentManager.setFragmentResult(
-                    TaskFragment.FRAGMENT_STACK_NAME,
+                    WorksFragment.FRAGMENT_STACK_NAME,
                     bundleOf(Work.PARCEL_WORK to editViewModel.workData)
                 )
                 parentFragmentManager.setFragmentResult(

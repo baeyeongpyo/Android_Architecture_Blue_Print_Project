@@ -2,13 +2,13 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".ui.tasks.TaskFragment">
+    tools:context=".ui.works.WorksFragment">
 
     <data>
 
         <variable
             name="taskViewModel"
-            type="com.yeong.android_architecture_blue_print_project.ui.tasks.TaskViewModel" />
+            type="com.yeong.android_architecture_blue_print_project.ui.works.WorksViewModel" />
 
         <import type="android.view.View" />
     </data>
