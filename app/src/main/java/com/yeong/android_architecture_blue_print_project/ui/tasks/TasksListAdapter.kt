@@ -14,7 +14,7 @@ class TasksListAdapter(private val workViewHolderEventListener: WorkViewHolderIt
     ListAdapter<Work, TasksListAdapter.WorkViewHolder>(diffAsync) {
 
     interface WorkViewHolderItemEvent {
-        fun completeWorkChangeEvent(boolean: Boolean)
+        fun completeWorkChangeEvent(work: Work, boolean: Boolean)
         fun workItemClickEvent(work: Work)
     }
 
@@ -49,7 +49,7 @@ class TasksListAdapter(private val workViewHolderEventListener: WorkViewHolderIt
                 workContentView.text = itemData.content
 
                 completeCheckView.setOnCheckedChangeListener { _, b ->
-                    workViewHolderEventListener.completeWorkChangeEvent(b)
+                    workViewHolderEventListener.completeWorkChangeEvent(itemData, b)
                 }
 
                 itemView.setOnClickListener {

@@ -62,4 +62,11 @@ class TaskViewModel(
         }
     }
 
+    fun workCompleteDataUpdate(work: Work, b: Boolean) {
+        work.isComplete = b
+        viewModelScope.launch {
+            workRepo.updateWork(work)
+        }
+    }
+
 }

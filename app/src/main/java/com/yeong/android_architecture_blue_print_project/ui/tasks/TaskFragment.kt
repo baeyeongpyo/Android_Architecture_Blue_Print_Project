@@ -127,9 +127,8 @@ class TaskFragment : BaseFragment<FragmentTaskBinding>(), FragmentResultListener
 
     private fun selectOptionComplete() = tasksViewModel.setFilter(TaskFilter.COMPLETE_WORK)
 
-    override fun completeWorkChangeEvent(boolean: Boolean) {
-        //TODO("Not yet implemented")
-        tasksViewModel
+    override fun completeWorkChangeEvent(work: Work, boolean: Boolean) {
+        tasksViewModel.workCompleteDataUpdate(work, boolean)
     }
 
     override fun workItemClickEvent(work: Work) {
