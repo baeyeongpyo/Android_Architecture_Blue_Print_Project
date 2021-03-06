@@ -6,6 +6,7 @@ import android.view.MenuInflater
 import android.view.MenuItem
 import androidx.core.os.bundleOf
 import androidx.fragment.app.FragmentResultListener
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import com.yeong.android_architecture_blue_print_project.BaseFragment
 import com.yeong.android_architecture_blue_print_project.R
@@ -30,7 +31,7 @@ class DetailWorkFragment : BaseFragment<FragmentTaskDetailBinding>(), HomeOption
         get() = R.layout.fragment_task_detail
 
     private lateinit var workData: Work
-    private lateinit var detailViewModel: DetailWorkViewModel
+    private val detailViewModel: DetailWorkViewModel by viewModels()
 
     override fun initView() {
         getActivityActionBar()?.run {
@@ -48,8 +49,6 @@ class DetailWorkFragment : BaseFragment<FragmentTaskDetailBinding>(), HomeOption
             workData = tempWorkData
         }
 
-        val factory = ViewModelFactory(this, arguments)
-        detailViewModel = ViewModelProvider(this, factory).get(DetailWorkViewModel::class.java)
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {

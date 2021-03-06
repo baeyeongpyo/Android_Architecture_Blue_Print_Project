@@ -2,12 +2,12 @@ package com.yeong.android_architecture_blue_print_project
 
 import android.os.Bundle
 import android.view.MenuItem
-import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import com.yeong.android_architecture_blue_print_project.ui.HomeOptionItemSelectProvider
+import dagger.android.support.DaggerAppCompatActivity
 
-abstract class BaseActivity<T : ViewDataBinding> : AppCompatActivity() {
+abstract class BaseActivity<T : ViewDataBinding> : DaggerAppCompatActivity() {
 
     protected lateinit var viewBinding: T
         private set
@@ -26,7 +26,7 @@ abstract class BaseActivity<T : ViewDataBinding> : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if ( item.itemId == android.R.id.home) {
+        if (item.itemId == android.R.id.home) {
             supportFragmentManager.fragments
                 .filter { it.isVisible }
                 .filter { it is HomeOptionItemSelectProvider }

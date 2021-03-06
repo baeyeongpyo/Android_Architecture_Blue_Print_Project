@@ -3,11 +3,15 @@ package com.yeong.android_architecture_blue_print_project.data
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import javax.inject.Inject
 
 class WorkRepositoryImpl(
     private val dataSource: WorkDataSource,
     private val dispatcher: CoroutineDispatcher = Dispatchers.IO
 ) : WorkRepository {
+
+    @Inject
+    constructor(dataSource: WorkDataSource) : this(dataSource, Dispatchers.IO)
 
     override suspend fun getAllWork(): Result<List<Work>> = withContext(dispatcher) {
         dataSource.getAllWork()

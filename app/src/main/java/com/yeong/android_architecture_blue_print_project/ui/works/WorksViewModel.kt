@@ -7,8 +7,9 @@ import com.yeong.android_architecture_blue_print_project.data.WorkRepository
 import com.yeong.android_architecture_blue_print_project.util.ResultExt.onFail
 import com.yeong.android_architecture_blue_print_project.util.ResultExt.onSuccess
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class WorksViewModel(
+class WorksViewModel @Inject constructor(
     private val workRepo: WorkRepository
 ) : ViewModel() {
 

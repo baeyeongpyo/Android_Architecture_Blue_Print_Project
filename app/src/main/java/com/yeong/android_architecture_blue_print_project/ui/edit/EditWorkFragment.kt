@@ -4,6 +4,7 @@ import android.view.MenuItem
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.core.os.bundleOf
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import com.yeong.android_architecture_blue_print_project.BaseFragment
 import com.yeong.android_architecture_blue_print_project.R
@@ -19,7 +20,7 @@ class EditWorkFragment : BaseFragment<FragmentEditBinding>(), HomeOptionItemSele
     override val layoutId: Int
         get() = R.layout.fragment_edit
 
-    private lateinit var editViewModel: EditWorkViewModel
+    private val editViewModel : EditWorkViewModel by viewModels()
 
     override fun initView() {
         getActivityActionBar()?.run {
@@ -36,8 +37,6 @@ class EditWorkFragment : BaseFragment<FragmentEditBinding>(), HomeOptionItemSele
                 }
             })
 
-        val factory = ViewModelFactory(this, arguments)
-        editViewModel = ViewModelProvider(this, factory).get(EditWorkViewModel::class.java)
     }
 
     private fun replaceTaskFragmentPage() {

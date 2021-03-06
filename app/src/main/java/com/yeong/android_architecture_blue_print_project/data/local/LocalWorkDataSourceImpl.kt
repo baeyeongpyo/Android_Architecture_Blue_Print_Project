@@ -8,12 +8,16 @@ import com.yeong.android_architecture_blue_print_project.data.local.LocalWorkDat
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
-import java.lang.Exception
+import javax.inject.Inject
 
 class LocalWorkDataSourceImpl(
     private val dao: WorkDAO,
     private val dispatcher: CoroutineDispatcher = Dispatchers.IO
 ) : WorkDataSource {
+
+    @Inject
+    constructor(dao: WorkDAO) : this(dao, Dispatchers.IO)
+
     override suspend fun getAllWork(): Result<List<Work>> = withContext(dispatcher) {
         try {
             val result = dao.allWork()

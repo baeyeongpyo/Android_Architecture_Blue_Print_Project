@@ -8,6 +8,7 @@ import android.view.View
 import androidx.appcompat.widget.PopupMenu
 import androidx.core.os.bundleOf
 import androidx.fragment.app.FragmentResultListener
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import com.yeong.android_architecture_blue_print_project.BaseFragment
 import com.yeong.android_architecture_blue_print_project.R
@@ -27,7 +28,8 @@ class WorksFragment : BaseFragment<FragmentTaskBinding>(), FragmentResultListene
 
     private val tasksAdapter: WorksListAdapter by lazy { WorksListAdapter(this) }
 
-    private lateinit var tasksViewModel: WorksViewModel
+    //    private lateinit var tasksViewModel: WorksViewModel
+    private val tasksViewModel: WorksViewModel by viewModels()
 
     companion object {
         const val FRAGMENT_STACK_NAME = "tasksPage"
@@ -44,8 +46,8 @@ class WorksFragment : BaseFragment<FragmentTaskBinding>(), FragmentResultListene
             setHasOptionsMenu(true)
         }
 
-        val factory = ViewModelFactory(this)
-        tasksViewModel = ViewModelProvider(this, factory).get(WorksViewModel::class.java)
+//        val factory = ViewModelFactory(this)
+//        tasksViewModel = ViewModelProvider(this, factory).get(WorksViewModel::class.java)
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {

@@ -1,5 +1,6 @@
 package com.yeong.android_architecture_blue_print_project
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,8 +10,19 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.HasDefaultViewModelProviderFactory
+import androidx.lifecycle.ViewModelProvider
+import com.yeong.android_architecture_blue_print_project.di.InjectSavedStateViewModelFactory
+import dagger.android.support.DaggerFragment
+import javax.inject.Inject
 
-abstract class BaseFragment<T : ViewDataBinding> : Fragment() {
+abstract class BaseFragment<T : ViewDataBinding> : DaggerFragment(), HasDefaultViewModelProviderFactory {
+
+    @Inject
+    lateinit var defaultViewModelFactory: dagger.Lazy<InjectSavedStateViewModelFactory>
+
+    override fun getDefaultViewModelProviderFactory(): ViewModelProvider.Factory =
+        defaultViewModelFactory.get().create(this, arguments)
 
     protected lateinit var viewBinding: T
         private set
@@ -19,6 +31,10 @@ abstract class BaseFragment<T : ViewDataBinding> : Fragment() {
 
     abstract fun initView()
     abstract fun initBinding()
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,

@@ -6,14 +6,23 @@ import androidx.lifecycle.*
 import com.yeong.android_architecture_blue_print_project.R
 import com.yeong.android_architecture_blue_print_project.data.Work
 import com.yeong.android_architecture_blue_print_project.data.WorkRepository
+import com.yeong.android_architecture_blue_print_project.di.AssistedSavedStateViewModelFactory
 import com.yeong.android_architecture_blue_print_project.ui.support.ResourceProvider
+import dagger.assisted.Assisted
+import dagger.assisted.AssistedFactory
+import dagger.assisted.AssistedInject
 import kotlinx.coroutines.launch
 
-class DetailWorkViewModel(
+class DetailWorkViewModel @AssistedInject constructor(
     private val repository: WorkRepository,
     private val resourceProvider: ResourceProvider,
-    savedStateHandler: SavedStateHandle
+    @Assisted savedStateHandler: SavedStateHandle
 ) : ViewModel() {
+
+    @AssistedFactory
+    interface Factory : AssistedSavedStateViewModelFactory<DetailWorkViewModel> {
+        override fun create(savedStateHandle: SavedStateHandle): DetailWorkViewModel
+    }
 
     companion object {
         const val WORK_REMOVE_SUCCESS = 1
