@@ -5,6 +5,8 @@ import com.yeong.android_architecture_blue_print_project.R
 import com.yeong.android_architecture_blue_print_project.data.Work
 import com.yeong.android_architecture_blue_print_project.data.WorkRepository
 import com.yeong.android_architecture_blue_print_project.di.AssistedSavedStateViewModelFactory
+import com.yeong.android_architecture_blue_print_project.domain.AddWorkUseCase
+import com.yeong.android_architecture_blue_print_project.domain.UpdateWorkUseCase
 import com.yeong.android_architecture_blue_print_project.ui.support.ResourceProvider
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedFactory
@@ -12,7 +14,8 @@ import dagger.assisted.AssistedInject
 import kotlinx.coroutines.launch
 
 class EditWorkViewModel @AssistedInject constructor(
-    private val repository: WorkRepository,
+    private val saveUseCase : AddWorkUseCase,
+    private val updateUseCase : UpdateWorkUseCase,
     private val resourceProvider: ResourceProvider,
     @Assisted savedStateHandler: SavedStateHandle
 ) : ViewModel() {
@@ -61,7 +64,7 @@ class EditWorkViewModel @AssistedInject constructor(
         workData.content = contentData
 
         viewModelScope.launch {
-            repository.updateWork(workData)
+            updateUseCase(workData)
             _singleEvent.postValue(WORK_SAVE_SUCCESS)
         }
     }
@@ -80,7 +83,7 @@ class EditWorkViewModel @AssistedInject constructor(
         val newWorkData = Work(titleData, contentData)
 
         viewModelScope.launch {
-            repository.addWork(newWorkData)
+            saveUseCase(newWorkData)
             _singleEvent.postValue(WORK_SAVE_SUCCESS)
         }
     }

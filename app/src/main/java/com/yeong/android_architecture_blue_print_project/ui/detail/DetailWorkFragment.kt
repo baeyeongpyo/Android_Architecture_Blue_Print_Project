@@ -7,14 +7,12 @@ import android.view.MenuItem
 import androidx.core.os.bundleOf
 import androidx.fragment.app.FragmentResultListener
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModelProvider
 import com.yeong.android_architecture_blue_print_project.BaseFragment
 import com.yeong.android_architecture_blue_print_project.R
 import com.yeong.android_architecture_blue_print_project.data.Work
 import com.yeong.android_architecture_blue_print_project.data.Work.Companion.PARCEL_WORK
 import com.yeong.android_architecture_blue_print_project.databinding.FragmentTaskDetailBinding
 import com.yeong.android_architecture_blue_print_project.ui.HomeOptionItemSelectProvider
-import com.yeong.android_architecture_blue_print_project.ui.ViewModelFactory
 import com.yeong.android_architecture_blue_print_project.ui.detail.DetailWorkViewModel.Companion.WORK_REMOVE_SUCCESS
 import com.yeong.android_architecture_blue_print_project.ui.edit.EditWorkFragment
 import com.yeong.android_architecture_blue_print_project.ui.works.WorksFragment

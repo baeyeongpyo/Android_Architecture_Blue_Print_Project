@@ -7,6 +7,8 @@ import com.yeong.android_architecture_blue_print_project.R
 import com.yeong.android_architecture_blue_print_project.data.Work
 import com.yeong.android_architecture_blue_print_project.data.WorkRepository
 import com.yeong.android_architecture_blue_print_project.di.AssistedSavedStateViewModelFactory
+import com.yeong.android_architecture_blue_print_project.domain.DeleteWorkUseCase
+import com.yeong.android_architecture_blue_print_project.domain.UpdateWorkUseCase
 import com.yeong.android_architecture_blue_print_project.ui.support.ResourceProvider
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedFactory
@@ -14,7 +16,8 @@ import dagger.assisted.AssistedInject
 import kotlinx.coroutines.launch
 
 class DetailWorkViewModel @AssistedInject constructor(
-    private val repository: WorkRepository,
+    private val updateUseCase: UpdateWorkUseCase,
+    private val removeUseCase: DeleteWorkUseCase,
     private val resourceProvider: ResourceProvider,
     @Assisted savedStateHandler: SavedStateHandle
 ) : ViewModel() {
@@ -63,14 +66,14 @@ class DetailWorkViewModel @AssistedInject constructor(
 
         workResult.isComplete = b
         viewModelScope.launch {
-            repository.updateWork(workResult)
+            updateUseCase(workResult)
         }
     }
 
     fun removeWork() {
         val workResult = workData ?: return
         viewModelScope.launch {
-            repository.removeWork(workResult)
+            removeUseCase(workResult)
             _singleEvent.postValue(WORK_REMOVE_SUCCESS)
         }
     }

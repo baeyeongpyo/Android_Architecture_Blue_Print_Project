@@ -5,13 +5,11 @@ import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModelProvider
 import com.yeong.android_architecture_blue_print_project.BaseFragment
 import com.yeong.android_architecture_blue_print_project.R
 import com.yeong.android_architecture_blue_print_project.data.Work
 import com.yeong.android_architecture_blue_print_project.databinding.FragmentEditBinding
 import com.yeong.android_architecture_blue_print_project.ui.HomeOptionItemSelectProvider
-import com.yeong.android_architecture_blue_print_project.ui.ViewModelFactory
 import com.yeong.android_architecture_blue_print_project.ui.detail.DetailWorkFragment
 import com.yeong.android_architecture_blue_print_project.ui.works.WorksFragment
 

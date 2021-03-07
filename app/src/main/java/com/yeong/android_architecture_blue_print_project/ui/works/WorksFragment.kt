@@ -9,13 +9,11 @@ import androidx.appcompat.widget.PopupMenu
 import androidx.core.os.bundleOf
 import androidx.fragment.app.FragmentResultListener
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModelProvider
 import com.yeong.android_architecture_blue_print_project.BaseFragment
 import com.yeong.android_architecture_blue_print_project.R
 import com.yeong.android_architecture_blue_print_project.data.Work
 import com.yeong.android_architecture_blue_print_project.databinding.FragmentTaskBinding
 import com.yeong.android_architecture_blue_print_project.ui.TaskListItemDecoration
-import com.yeong.android_architecture_blue_print_project.ui.ViewModelFactory
 import com.yeong.android_architecture_blue_print_project.ui.detail.DetailWorkFragment
 import com.yeong.android_architecture_blue_print_project.ui.edit.EditWorkFragment
 import com.yeong.android_architecture_blue_print_project.util.FragmentExt.replaceBackStack

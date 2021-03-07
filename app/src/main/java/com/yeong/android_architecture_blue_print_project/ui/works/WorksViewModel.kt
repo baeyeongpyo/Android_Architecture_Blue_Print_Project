@@ -4,13 +4,20 @@ import androidx.lifecycle.*
 import com.yeong.android_architecture_blue_print_project.data.Result
 import com.yeong.android_architecture_blue_print_project.data.Work
 import com.yeong.android_architecture_blue_print_project.data.WorkRepository
+import com.yeong.android_architecture_blue_print_project.domain.AllWorksUseCase
+import com.yeong.android_architecture_blue_print_project.domain.CompleteWorksUseCase
+import com.yeong.android_architecture_blue_print_project.domain.UpdateWorkUseCase
+import com.yeong.android_architecture_blue_print_project.domain.YetCompleteWorksUseCase
 import com.yeong.android_architecture_blue_print_project.util.ResultExt.onFail
 import com.yeong.android_architecture_blue_print_project.util.ResultExt.onSuccess
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class WorksViewModel @Inject constructor(
-    private val workRepo: WorkRepository
+    private val allWorksUseCase: AllWorksUseCase,
+    private val yetCompleteUseCase : YetCompleteWorksUseCase,
+    private val completeUseCase : CompleteWorksUseCase,
+    private val updateUseCase : UpdateWorkUseCase
 ) : ViewModel() {
 
     private val _tasks = MutableLiveData<List<Work>>(null)
@@ -44,15 +51,15 @@ class WorksViewModel @Inject constructor(
     }
 
     private fun getAllTasks() {
-        viewModelScope.launch { tasksDataPostLiveData(workRepo.getAllWork()) }
+        viewModelScope.launch { tasksDataPostLiveData(allWorksUseCase()) }
     }
 
     private fun getYetCompleteTasks() {
-        viewModelScope.launch { tasksDataPostLiveData(workRepo.getYetCompleteWorkList()) }
+        viewModelScope.launch { tasksDataPostLiveData(yetCompleteUseCase()) }
     }
 
     private fun getCompleteTasks() {
-        viewModelScope.launch { tasksDataPostLiveData(workRepo.getCompleteWorkList()) }
+        viewModelScope.launch { tasksDataPostLiveData(completeUseCase()) }
     }
 
     private fun tasksDataPostLiveData(listData: Result<List<Work>>) {
@@ -66,7 +73,7 @@ class WorksViewModel @Inject constructor(
     fun workCompleteDataUpdate(work: Work, b: Boolean) {
         work.isComplete = b
         viewModelScope.launch {
-            workRepo.updateWork(work)
+            updateUseCase()
         }
     }
 
