@@ -12,6 +12,14 @@ sealed class Result<out R> {
         fun bind(data: Exception)
     }
 
+    fun interface LoadingBind {
+        fun bind()
+    }
+
+    fun interface DoneBind {
+        fun bind()
+    }
+
     data class Success<T>(val data: T) : Result<T>()
     data class Fail(val exception: Exception) : Result<Exception>()
     object Loading : Result<Nothing>()
@@ -33,6 +41,16 @@ sealed class Result<out R> {
 
     inline fun <reified T> onFail(bind: FailBind): Result<R> {
         if (this is Fail) bind.bind(exception)
+        return this
+    }
+
+    inline fun <reified T> onLoading(bind: LoadingBind): Result<R> {
+        if (this is Loading) bind.bind()
+        return this
+    }
+
+    inline fun <reified T> onDone(bind: DoneBind): Result<R> {
+        if (this is Done) bind.bind()
         return this
     }
 
