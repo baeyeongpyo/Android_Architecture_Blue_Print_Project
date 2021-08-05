@@ -37,17 +37,17 @@ sealed class Result<out R> {
         return this
     }
 
-    inline fun <reified T> onFail(bind: FailBind): Result<R> {
+    fun onFail(bind: FailBind): Result<R> {
         if (this is Fail) bind.bind(exception)
         return this
     }
 
-    inline fun <reified T> onLoading(bind: LoadingBind): Result<R> {
+    fun onLoading(bind: LoadingBind): Result<R> {
         if (this is Loading) bind.bind()
         return this
     }
 
-    inline fun <reified T> onDone(bind: DoneBind): Result<R> {
+    fun onDone(bind: DoneBind): Result<R> {
         if (this is Success || this is Fail) bind.bind()
         return this
     }
