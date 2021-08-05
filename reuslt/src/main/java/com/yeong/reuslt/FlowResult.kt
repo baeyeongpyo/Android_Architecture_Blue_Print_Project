@@ -1,10 +1,22 @@
 package com.yeong.reuslt
 
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOf
 
-class FlowResult<T>(private val result: Result<T>) {
+class FlowResult private constructor() {
 
-    suspend fun collect(action: suspend Result<T>.() -> Unit) =
-        flowOf(Result.Loading, result, Result.Done).collect(action)
+    companion object {
+        suspend fun <T> collect(
+            result: suspend () -> Result<T>,
+            action: suspend Result<T>.() -> Unit
+        ) =
+            flow {
+                emit(Result.Loading)
+                emit(result())
+                emit(Result.Done)
+            }.collect { it.action() }
+
+    }
 }
