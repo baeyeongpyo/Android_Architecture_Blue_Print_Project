@@ -32,8 +32,9 @@ sealed class Result<out R> {
         }
     }
 
-    inline fun <reified T> onSuccess(bind: SuccessBind<T>): Result<R> {
-        if (this is Success && data is T) bind.bind(data)
+    @Suppress("UNCHECKED_CAST")
+    fun <T> onSuccess(bind: SuccessBind<T>): Result<R> {
+        if (this is Success) bind.bind(data as T)
         return this
     }
 
